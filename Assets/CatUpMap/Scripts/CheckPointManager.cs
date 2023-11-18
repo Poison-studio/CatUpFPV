@@ -1,4 +1,4 @@
-using CatUp;
+﻿using CatUp;
 using Hertzole.GoldPlayer;
 using UnityEngine;
 
@@ -32,6 +32,16 @@ namespace CatUp
             }
 
             return null;
+        }
+
+        //Временный рестарт
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                //OnPlayerDeath();
+                player.GetComponent<Health>().death.Invoke();
+            }
         }
     }
 
