@@ -112,3 +112,8 @@ crashlytics-build.properties
 # Never ignore these Bakery Editor files
 !/**/ftModelPostProcessor.cs
 !/**/ftSavedPadding2.cs
+
+########################################
+# MeshBaker .gitignore
+########################################
+/[Aa]ssets/MeshBaker/*
