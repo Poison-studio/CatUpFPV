@@ -23,9 +23,8 @@ namespace CatUp
 
         private void OnPlayerDeath()
         {
-            player.GetComponent<GoldPlayerController>().SetPositionAndRotation(GetCurrentCheckPointTransform(CheckPoint.activeID).position, GetCurrentCheckPointTransform(CheckPoint.activeID).rotation.y);
+            player.GetComponent<GoldPlayerController>().SetPositionAndRotation(GetCurrentCheckPointTransform(CheckPoint.activeID).position, GetCurrentCheckPointTransform(CheckPoint.activeID).eulerAngles.y);
             player.GetComponent<GoldPlayerController>().Movement.AddForce(Vector3.zero, 0);
-            //player.GetComponent<GoldPlayerController>().Movement.AddForce(player.GetComponent<GoldPlayerController>().Movement.Velocity.normalized, player.GetComponent<GoldPlayerController>().Movement.Velocity.y);
         }
 
         private Transform GetCurrentCheckPointTransform(int currentCheckPointNumber)
@@ -44,12 +43,10 @@ namespace CatUp
         //Временный рестарт
         private void Update()
         {
-
             restartTimer += Time.deltaTime;
 
-            if(Input.GetKeyDown(KeyCode.R)/* && restartTimer > restartTime*/)
+            if(Input.GetKeyDown(KeyCode.R) && restartTimer > restartTime)
             {
-                //OnPlayerDeath();
                 restartTimer = 0;
                 player.GetComponent<Health>().death.Invoke();
             }
