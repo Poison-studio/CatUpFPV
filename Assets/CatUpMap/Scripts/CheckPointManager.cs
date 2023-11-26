@@ -1,5 +1,4 @@
-﻿using CatUp;
-using Hertzole.GoldPlayer;
+﻿using Hertzole.GoldPlayer;
 using UnityEngine;
 
 namespace CatUp
@@ -8,6 +7,12 @@ namespace CatUp
     {
         private GameObject player;
         private CheckPoint[] checkPoints;
+
+        [Tooltip("Allowed restart frequency")]
+        [SerializeField]
+        private float restartTime;
+
+        private float restartTimer;
 
         public void Start()
         {
@@ -18,7 +23,8 @@ namespace CatUp
 
         private void OnPlayerDeath()
         {
-            player.GetComponent<GoldPlayerController>().SetPositionAndRotation(GetCurrentCheckPointTransform(CheckPoint.activeID).position, GetCurrentCheckPointTransform(CheckPoint.activeID).rotation.y);
+            player.GetComponent<GoldPlayerController>().SetPositionAndRotation(GetCurrentCheckPointTransform(CheckPoint.activeID).position, GetCurrentCheckPointTransform(CheckPoint.activeID).eulerAngles.y);
+            player.GetComponent<GoldPlayerController>().Movement.AddForce(Vector3.zero, 0);
         }
 
         private Transform GetCurrentCheckPointTransform(int currentCheckPointNumber)
@@ -37,9 +43,11 @@ namespace CatUp
         //Временный рестарт
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.R))
+            restartTimer += Time.deltaTime;
+
+            if(Input.GetKeyDown(KeyCode.R) && restartTimer > restartTime)
             {
-                //OnPlayerDeath();
+                restartTimer = 0;
                 player.GetComponent<Health>().death.Invoke();
             }
         }
