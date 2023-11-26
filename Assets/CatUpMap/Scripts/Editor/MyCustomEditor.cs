@@ -19,10 +19,37 @@ public static class MyCustomEditor
                     parent = Selection.activeGameObject;
                     EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
                 }
-                if (e.keyCode == KeyCode.K)
+                if (e.keyCode == KeyCode.O)
                 {
-                    Debug.Log("Attached" + Selection.activeObject);
-                    Selection.activeGameObject.transform.parent = parent.transform;
+                    //Debug.Log("Attached" + Selection.activeObject);
+                    //Selection.activeGameObject.transform.parent = parent.transform;
+
+                    Object[] objects = Selection.objects;
+                    GameObject[] gameObjects = new GameObject[objects.Length];
+
+                    for (int i = 0; i < objects.Length; i++)
+                    {
+                        gameObjects[i] = objects[i] as GameObject;
+                    }
+
+                    for (int i = 0; i < objects.Length; i++)
+                    {
+                        gameObjects[i].transform.parent = parent.transform;
+                    }
+
+                    Debug.Log(Selection.objects.Length);
+                    EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                }
+                if (e.keyCode == KeyCode.U)
+                {
+                    Debug.Log("Disabled" + Selection.activeObject);
+                    Selection.activeGameObject.SetActive(false);
+                    EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                }
+                if (e.keyCode == KeyCode.I)
+                {
+                    Debug.Log("Enabled" + Selection.activeObject);
+                    Selection.activeGameObject.SetActive(true);
                     EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
                 }
             }
