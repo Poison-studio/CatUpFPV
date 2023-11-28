@@ -10,7 +10,7 @@ public class BonusTime : MonoBehaviour
         if (other.tag == "Player")
         {
             FindObjectOfType<ScoreManager>().AddScore(bonusTime);
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Hertzole.GoldPlayer;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CatUp
 {

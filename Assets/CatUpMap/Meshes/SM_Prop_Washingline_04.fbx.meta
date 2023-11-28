@@ -48,7 +48,8 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
+    extraUserProperties:
+    - '#BAKERY{"meshName":["SM_Prop_Washingline_04"],"padding":[256],"unwrapper":[0]}'
     clipAnimations: []
     isReadable: 0
   meshes:
