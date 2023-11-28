@@ -1,1 +1,11 @@
 *.unity filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/Mesh filter=lfs diff=lfs merge=lfs -text
+Baker/Meshes/* filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Земля.prefab.meta filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Болванка[[:space:]]для[[:space:]]меша.prefab filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Болванка[[:space:]]для[[:space:]]меша.prefab.meta filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид-mesh.asset filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид-mesh.asset.meta filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид.prefab filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид.prefab.meta filter=lfs diff=lfs merge=lfs -text
+Assets/CatUpMap/MeshBaker/Meshes/Земля.prefab filter=lfs diff=lfs merge=lfs -text
