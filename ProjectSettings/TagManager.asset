@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Death Zone
+  - CheckPoint
+  - Cart
   layers:
   - Default
   - TransparentFX
@@ -12,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Near
+  - Far
+  - Checkpoint
+  - DestroyingPlatform
   - 
   - 
   - 

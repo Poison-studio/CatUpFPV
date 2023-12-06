@@ -361,9 +361,9 @@ namespace Hertzole.GoldPlayer
         public void LockCursor(bool lockCursor)
         {
             // Set the cursor lock state to either locked or none, depending on the lock cursor parameter.
-            Cursor.lockState = lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+            //Cursor.lockState = lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             // Hide/Show the cursor based on the lock cursor parameter.
-            Cursor.visible = !lockCursor;
+            //Cursor.visible = !lockCursor;
         }
 
         public override void OnUpdate(float deltaTime, float unscaledDeltaTime)

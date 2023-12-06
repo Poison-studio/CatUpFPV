@@ -11,6 +11,9 @@ namespace CatUp
         private bool WasInitialized;
         private bool destroyable;
 
+        [SerializeField]
+        private AudioSource audio;
+
         void Start()
         {
             if (!WasInitialized && connected.Count != 0)
@@ -48,16 +51,27 @@ namespace CatUp
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player" && destroyable)
+            if (other.gameObject.tag == "Player" && destroyable && !gameObject.GetComponent<Rigidbody>())
             {
                 gameObject.AddComponent<Rigidbody>();
+                PlaySound();
             }
 
-            if (other.gameObject.tag != "Water" && other.gameObject.tag != "Player")
+            if (other.gameObject.tag != "Water" && other.gameObject.tag != "Player" && other.gameObject.tag != "CheckPoint")
             {
-                //Destroy(gameObject.GetComponent<Rigidbody>());
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
+        }
+
+        private void PlaySound()
+        {
+            if (audio != null)
+            {
+                audio.gameObject.SetActive(true);
+                audio.Play();
+            }
+            //Debug.Log();
+            //audio.Play();
         }
     }
 
