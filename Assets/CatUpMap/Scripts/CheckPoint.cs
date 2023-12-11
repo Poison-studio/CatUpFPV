@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CatUp
 {
@@ -6,17 +6,21 @@ namespace CatUp
     {
         //Get current active checkpoint
         public static int activeID { get; private set; } = 0;
-        //CheckPoints on map
+
+        //После инициализации эта переменная содержит в себе общее число чекпоинтов на карте
         public static int maxID { get; private set; } = 0;
 
         [SerializeField]
-        private ParticleSystem[] particleSystems;
+        private float freezeTime;
 
         [SerializeField]
-        private ParticleSystem[] pickupEffict;
+        private ParticleSystem[] commonEffect;
 
         [SerializeField]
-        private AudioSource audio;
+        private ParticleSystem[] pickupEffect;
+
+        [SerializeField]
+        private AudioSource pickupAudioEffect;
 
         public int localID { get; private set; }
 
@@ -28,48 +32,37 @@ namespace CatUp
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Player")
-            {
-                activeID = localID;
-                DisableEffect();
+            if (other.tag != "Player") return;
 
-                PickupEffect();
-                PlaySound();
-                //Debug.Log(name);
-                if(name != "Start CheckPoint")
-                {
-                    FindObjectOfType<ScoreManager>().FreezeScore();
-                }
-                //FindObjectOfType<ScoreManager>().FreezeScore();
-                GetComponent<BoxCollider>().enabled = false;
-            }
+            activeID = localID;
+
+            DisableCommonEffect();
+            PickupEffect();
+
+            //На некоторых чекпоинтах мы не хотим проигрывать звуки, так что их можно просто удалить
+            if (pickupAudioEffect != null) pickupAudioEffect.Play();
+
+
+            FindObjectOfType<ScoreManager>().FreezeScore(freezeTime);
+
+            GetComponent<BoxCollider>().enabled = false;
+
         }
 
-        private void DisableEffect()
+        private void DisableCommonEffect()
         {
-            if (particleSystems.Length == 0) return;
-            foreach (ParticleSystem picked in particleSystems)
+            if (commonEffect.Length == 0) return;
+            foreach (ParticleSystem picked in commonEffect)
             {
                 picked.Stop();
             }
         }
 
-        private void PlaySound()
-        {
-            if(audio != null)
-            {
-                audio.gameObject.SetActive(true);
-                audio.Play();
-            }
-            //Debug.Log();
-            //audio.Play();
-        }
-
         private void PickupEffect()
         {
-            if (pickupEffict.Length == 0) return;
+            if (pickupEffect.Length == 0) return;
 
-            foreach (ParticleSystem picked in pickupEffict)
+            foreach (ParticleSystem picked in pickupEffect)
             {
                 picked.Emit(50);
             }

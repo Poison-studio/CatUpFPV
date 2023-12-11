@@ -61,7 +61,9 @@ namespace CatUp
         {
             shootDelayTimer -= Time.deltaTime;
 
-            if (Input.GetMouseButtonDown(0) && shootDelayTimer < 0)
+            if (shootDelayTimer > 0) return;
+
+            if (Input.GetMouseButtonDown(0))
             {
                 Shoot();
             }

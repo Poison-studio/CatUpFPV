@@ -1,6 +1,5 @@
 ﻿using Hertzole.GoldPlayer;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace CatUp
 {
@@ -46,7 +45,7 @@ namespace CatUp
         {
             restartTimer += Time.deltaTime;
 
-            if(Input.GetKeyDown(KeyCode.R) && restartTimer > restartTime)
+            if(Input.GetKeyDown(KeyCode.O) && restartTimer > restartTime)
             {
                 restartTimer = 0;
                 player.GetComponent<Health>().death.Invoke();

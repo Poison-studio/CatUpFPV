@@ -1,24 +1,22 @@
-using Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DollySwitcher : MonoBehaviour
+namespace CatUp
 {
-    [SerializeField]
-    private GameObject cart;
-
-
-    void Start()
+    public class DollySwitcher : MonoBehaviour
     {
-        
-    }
+        [Tooltip("Новая вагонетка, на которую мы переключаемся")]
+        [SerializeField]
+        private GameObject cart;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Cart")
+        public void OnTriggerEnter(Collider other)
         {
-            GetComponent<BoxCollider>().enabled = false;
-            cart.SetActive(true);
-            other.gameObject.SetActive(false);
+            if (other.gameObject.tag == "Cart")
+            {
+                GetComponent<BoxCollider>().enabled = false;
+                cart.SetActive(true);
+                other.gameObject.SetActive(false);
+            }
         }
     }
+
 }

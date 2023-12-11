@@ -70,8 +70,6 @@ namespace CatUp
                 audio.gameObject.SetActive(true);
                 audio.Play();
             }
-            //Debug.Log();
-            //audio.Play();
         }
     }
 

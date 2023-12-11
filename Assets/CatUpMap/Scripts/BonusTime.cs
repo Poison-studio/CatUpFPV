@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class BonusTime : MonoBehaviour
+namespace CatUp
 {
-    [SerializeField]
-    private float bonusTime;
-
-    private void OnTriggerEnter(Collider other)
+    public class BonusTime : MonoBehaviour
     {
-        if (other.tag == "Player")
+        [SerializeField]
+        private float bonusTime;
+
+        private void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<ScoreManager>().AddScore(bonusTime);
-            Destroy(gameObject);
+            if (other.tag == "Player")
+            {
+                FindObjectOfType<ScoreManager>().AddScore(bonusTime);
+                Destroy(gameObject);
+            }
         }
     }
+
 }

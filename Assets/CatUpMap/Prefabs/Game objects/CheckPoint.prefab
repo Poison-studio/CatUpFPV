@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5831617540401737359
 Transform:
   m_ObjectHideFlags: 0
@@ -43,7 +43,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 858fca73f7d071e4885f8160afbc0691, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.192
   m_Pitch: 1
   Loop: 0
@@ -282,20 +282,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36001e249e6caeb4c9220814d256ef25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystems:
+  freezeTime: 5
+  commonEffect:
   - {fileID: 3344100339341873493}
-  - {fileID: 3344100338520818014}
   - {fileID: 3344100338445698000}
   - {fileID: 3344100337573167302}
   - {fileID: 3344100339059374887}
   - {fileID: 6189291146907601140}
   - {fileID: 6189291145262157201}
-  pickupEffict:
+  pickupEffect:
   - {fileID: 326679558586293046}
   - {fileID: 326679557385006443}
   - {fileID: 7135834926846352027}
   - {fileID: 554375689143359126}
-  audio: {fileID: 7237581518847099808}
+  pickupAudioEffect: {fileID: 7237581518847099808}
 --- !u!1 &6719850306811398665
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +598,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6532625475154270252, guid: 07a977963523b3b4dbcaa27119f6b469, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a977963523b3b4dbcaa27119f6b469, type: 3}
@@ -610,11 +611,6 @@ ParticleSystem:
 --- !u!198 &3344100338445698000 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6532625476167473825, guid: 07a977963523b3b4dbcaa27119f6b469, type: 3}
-  m_PrefabInstance: {fileID: 8412774442621524337}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3344100338520818014 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6532625475154270255, guid: 07a977963523b3b4dbcaa27119f6b469, type: 3}
   m_PrefabInstance: {fileID: 8412774442621524337}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &3344100339059374887 stripped
