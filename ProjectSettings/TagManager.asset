@@ -7,7 +7,7 @@ TagManager:
   - Death Zone
   - CheckPoint
   - Cart
-  - skeleton
+  - Skeleton
   layers:
   - Default
   - TransparentFX

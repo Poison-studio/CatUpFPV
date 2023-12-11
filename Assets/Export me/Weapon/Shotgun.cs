@@ -1,105 +1,144 @@
-using Hertzole.GoldPlayer;
+﻿using Hertzole.GoldPlayer;
+using System.Collections;
 using UnityEngine;
 
-public class Shotgun : MonoBehaviour
+namespace CatUp
 {
-    [SerializeField]
-    private LayerMask mask;
-
-    [SerializeField]
-    private ParticleSystem[] shootEffect;
-
-    [SerializeField]
-    private Animator animator;
-
-    [SerializeField]
-    private GameObject[] shells;
-
-    private int remainbullets;
-
-    [SerializeField]
-    private float shootDelay;
-
-    [SerializeField]
-    private AudioSource shootEffecta;
-
-    private float timer;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Shotgun : MonoBehaviour
     {
-        timer = shootDelay;
-        remainbullets = 4;
-    }
+        [SerializeField]
+        private LayerMask shootMask;
 
-    // Update is called once per frame
-    void Update()
-    {
-        timer -= Time.deltaTime;
-        if(Input.GetMouseButtonDown(0) && timer < 0)
-        {
-            timer = shootDelay;
-            Shoot();
-        }
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            animator.SetTrigger("reload");
-        }
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            animator.SetTrigger("HideWeapon");
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            animator.SetTrigger("ShowWeapon");
-        }
-    }
+        [SerializeField]
+        private GoldPlayerController playerController;
 
-    private void Shoot()
-    {
-        RaycastHit hit;
+        [SerializeField]
+        private Recoil recoilScript;
 
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
+        [SerializeField]
+        private AudioSource shootSoundEffect;
+
+        [SerializeField]
+        private AudioSource noAmmoSoundEffect;
+
+        [SerializeField]
+        private Animator animator;
+
+        private int remainBullets;
+
+        [SerializeField]
+        private int totalBulletsCount;
+
+        [Tooltip("Время между выстрелами")]
+        [SerializeField]
+        private float shootDelay;
+
+        //Нужно убрать эту переменную и брать время напрямую из аниматора
+        [Tooltip("Время, которое игрок не сможет стрелять во время перезарядки")]
+        [SerializeField]
+        private float reloadDelay;
+
+        //Во время перезарядки нужно показать гильзы на оружии, переменная showShellsDelay позволяет определить, когда именно гильзы появятся.
+        [SerializeField]
+        private float showShellsDelay;
+
+        private float shootDelayTimer;
+
+        [SerializeField]
+        private GameObject[] shells;
+
+        [SerializeField]
+        private ParticleSystem[] shootParticleEffect;
+        
+
+        void Start()
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            if(hit.collider.gameObject.tag == "skeleton")
+            shootDelayTimer = shootDelay;
+            remainBullets = totalBulletsCount;
+        }
+
+        void Update()
+        {
+            shootDelayTimer -= Time.deltaTime;
+
+            if (Input.GetMouseButtonDown(0) && shootDelayTimer < 0)
             {
-                hit.collider.gameObject.GetComponent<DestroyMe>().DestroyMeP();
+                Shoot();
             }
-            Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
-        }
 
-        remainbullets--;
-        if(remainbullets < 0)
-        {
-            //animator.gameObject.SetActive(true);
-            animator.SetTrigger("reload");
-            remainbullets = 4;
-            foreach(GameObject go in shells)
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                go.SetActive(true);
+                Reload();
             }
         }
-        else
+
+        private void Reload()
         {
-            shells[remainbullets].SetActive(false);
+            animator.SetTrigger("Reload");
+
+            remainBullets = totalBulletsCount;
+            shootDelayTimer = reloadDelay;
+
+            StartCoroutine(ShowShells());
+
+            IEnumerator ShowShells()
+            {
+                yield return new WaitForSeconds(.5f);
+
+                foreach (GameObject go in shells)
+                {
+                    go.SetActive(true);
+                }
+
+                yield return null;
+            }
         }
 
-        FindObjectOfType<GoldPlayerController>().Camera.CameraShake(2,2,1);
-        FindObjectOfType<GoldPlayerController>().Camera.ApplyRecoil(3f, 1f);
-        FindObjectOfType<Recoil>().RecoilFire();
-        shootEffecta.Play();
-        //FindAnyObjectByType<GoldPlayerController>().Movement.AddForce(-transform.forward,.1f);
 
-        foreach (ParticleSystem picked in shootEffect)
+        private void Shoot()
         {
-            picked.Emit(100);
+            if (remainBullets < 0)
+            {
+                noAmmoSoundEffect.Play();
+                return;
+            }
+
+            shells[remainBullets].SetActive(false);
+
+            remainBullets--;
+
+            shootDelayTimer = shootDelay;
+
+            #region Shoot Logic
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootMask))
+            {
+                if (hit.collider.gameObject.tag == "Skeleton")
+                {
+                    hit.collider.gameObject.GetComponent<DestroyMe>().Destroy();
+                }
+            }
+
+            #endregion
+
+            #region Shoot Visual & Audio Effects
+
+            playerController.Camera.CameraShake(2, 2, 1);
+            playerController.Camera.ApplyRecoil(3f, 1f);
+
+            recoilScript.ApplyRecoil();
+
+            shootSoundEffect.Play();
+
+            foreach (ParticleSystem picked in shootParticleEffect)
+            {
+                picked.Emit(100);
+            }
+
+            #endregion
         }
     }
 }
+
