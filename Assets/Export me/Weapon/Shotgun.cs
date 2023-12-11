@@ -20,6 +20,9 @@ public class Shotgun : MonoBehaviour
     [SerializeField]
     private float shootDelay;
 
+    [SerializeField]
+    private AudioSource shootEffecta;
+
     private float timer;
 
     // Start is called before the first frame update
@@ -91,6 +94,7 @@ public class Shotgun : MonoBehaviour
         FindObjectOfType<GoldPlayerController>().Camera.CameraShake(2,2,1);
         FindObjectOfType<GoldPlayerController>().Camera.ApplyRecoil(3f, 1f);
         FindObjectOfType<Recoil>().RecoilFire();
+        shootEffecta.Play();
         //FindAnyObjectByType<GoldPlayerController>().Movement.AddForce(-transform.forward,.1f);
 
         foreach (ParticleSystem picked in shootEffect)

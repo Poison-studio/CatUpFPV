@@ -10,6 +10,9 @@ public class DestroyMe : MonoBehaviour
     [SerializeField]
     private GameObject[] enableMe;
 
+    [SerializeField]
+    private AudioSource deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,7 @@ public class DestroyMe : MonoBehaviour
 
     public void DestroyMeP()
     {
+        deathSound.Play();
         GetComponent<Animator>().StopPlayback();
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().isStopped = true;
