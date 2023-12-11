@@ -1,0 +1,67 @@
+﻿title: KiraInitialization
+position: 270,-367
+---
+    <<declare $KiraStatus = 0>>
+    <<StartDialogue>>
+    <<jump KiraDialogueSelector>>
+===
+
+title: KiraDialogueSelector
+position: 269,-166
+---
+    <<if $KiraStatus eq 0>>
+    <<jump KiraStart>>
+    <<elseif $KiraStatus eq 1>>
+    <<jump Ignore>>
+    <<endif>>
+===
+
+title: KiraStart
+position: 272,10
+---
+Наконец ты очнулся, я думала не дождусь.
+Мне нужна помощь, весь город захвачен нечестью, мне нужно чтобы ты нашёл моего отца.
+Он священник, найди церковь, мой отец будет там.
+-> 1. Где я могу найти церковь?
+    <<jump Church>>
+-> 2. Что произошло в городе?
+    <<jump WhatHappend>>
+===
+
+title: WhatHappend
+position: 543,10
+---
+Я не знаю, найди моего отца, он должен нам помочь.
+    <<set $KiraStatus to 1>>
+    <<EndDialugue>>
+===
+
+title: Church
+position: 272,215
+---
+Церковь находится на горе, слева от города.
+    <<jump PickUpWeapon>>
+===
+
+title: PickUpWeapon
+position: 558,216
+---
+Там опасно, возьми дробовик, он лежит справа на ящиках.
+    <<set $KiraStatus to 1>>
+    <<EndDialugue>>
+===
+
+title: Ignore
+position: 550,-168
+---
+Найди моего отца. Он в церкви слева от города.
+    <<EndDialugue>>
+===
+
+title: DontOpenGate
+position: 11,-165
+---
+    <<StartDialogue>>
+Не советую тебе открывать эти ворота. Скелеты могут услышать.
+    <<EndDialugue>>
+===

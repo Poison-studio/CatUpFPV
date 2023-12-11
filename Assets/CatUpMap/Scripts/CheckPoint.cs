@@ -43,7 +43,7 @@ namespace CatUp
             if (pickupAudioEffect != null) pickupAudioEffect.Play();
 
 
-            FindObjectOfType<ScoreManager>().FreezeScore(freezeTime);
+            //FindObjectOfType<ScoreManager>().FreezeScore(freezeTime);
 
             GetComponent<BoxCollider>().enabled = false;
 

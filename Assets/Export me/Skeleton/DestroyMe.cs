@@ -15,6 +15,9 @@ namespace CatUp
         [SerializeField]
         private AudioSource deathSound;
 
+        [SerializeField]
+        private GameObject damageZone;
+
         public void Destroy()
         {
             deathSound.Play();
@@ -23,6 +26,8 @@ namespace CatUp
             Destroy(GetComponent<NavMeshAgent>());
             Destroy(GetComponent<BoxCollider>());
             Destroy(GetComponent<FollowTarget>());
+
+            damageZone.SetActive(false);
 
             foreach (GameObject picked in disableSchedule)
             {
@@ -33,7 +38,7 @@ namespace CatUp
             {
                 picked.GetComponent<MeshRenderer>().enabled = true;
                 picked.AddComponent<Rigidbody>();
-                picked.GetComponent<Rigidbody>().AddForce((transform.position - FindObjectOfType<GoldPlayerController>().gameObject.transform.position) * 100);
+                picked.GetComponent<Rigidbody>().AddForce((transform.position - FindObjectOfType<GoldPlayerController>().gameObject.transform.position) * Random.Range(30,60));
             }
         }
     }

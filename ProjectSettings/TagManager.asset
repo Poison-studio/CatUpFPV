@@ -8,6 +8,7 @@ TagManager:
   - CheckPoint
   - Cart
   - Skeleton
+  - InteractibleUI
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - DestroyingPlatform
   - NonWalkable
   - VisibleObjects
-  - 
+  - Destroyed
   - 
   - 
   - 
