@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1435919942211674816}
   - component: {fileID: 4002476434745704756}
   m_Layer: 0
-  m_Name: Hidden Zone
+  m_Name: Skeleton Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

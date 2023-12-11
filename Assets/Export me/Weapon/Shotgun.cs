@@ -119,6 +119,7 @@ namespace CatUp
             {
                 if (hit.collider.gameObject.tag == "Skeleton")
                 {
+                    Debug.Log("Git skeleton");
                     hit.collider.gameObject.GetComponent<DestroyMe>().Destroy();
                 }
             }
