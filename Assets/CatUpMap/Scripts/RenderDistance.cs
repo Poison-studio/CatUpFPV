@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class RenderDistance : MonoBehaviour
+namespace CatUp
 {
-    [SerializeField]
-    private float NearObjectsDrawDistance;
-    [SerializeField]
-    private float StandartObjectsDrawDistance;
-    [SerializeField]
-    private float CheckpointDrawDistance;
-    [SerializeField]
-    private float DestroyingPlatformDrawDistance;
-
-    void Start()
+    public class RenderDistance : MonoBehaviour
     {
-        Camera camera = GetComponent<Camera>();
-        float[] distances = new float[32];
-        distances[0] = StandartObjectsDrawDistance;
-        distances[6] = NearObjectsDrawDistance;
-        distances[8] = CheckpointDrawDistance;
-        distances[9] = DestroyingPlatformDrawDistance;
-        camera.layerCullDistances = distances;
+        [SerializeField]
+        private float NearObjectsDrawDistance;
+        [SerializeField]
+        private float StandartObjectsDrawDistance;
+        [SerializeField]
+        private float CheckpointDrawDistance;
+        [SerializeField]
+        private float DestroyingPlatformDrawDistance;
+
+        void Start()
+        {
+            Camera camera = GetComponent<Camera>();
+            float[] distances = new float[32];
+            distances[0] = StandartObjectsDrawDistance;
+            distances[6] = NearObjectsDrawDistance;
+            distances[8] = CheckpointDrawDistance;
+            distances[9] = DestroyingPlatformDrawDistance;
+            camera.layerCullDistances = distances;
+        }
     }
 }

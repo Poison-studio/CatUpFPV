@@ -2,59 +2,40 @@ using Hertzole.GoldPlayer;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DestroyMe : MonoBehaviour
+namespace CatUp
 {
-    [SerializeField]
-    private GameObject[] disableMe;
-
-    [SerializeField]
-    private GameObject[] enableMe;
-
-    [SerializeField]
-    private AudioSource deathSound;
-
-    // Start is called before the first frame update
-    void Start()
+    public class DestroyMe : MonoBehaviour
     {
-        AnimatorStateInfo animationState = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-        GetComponent<Animator>().Play(animationState.fullPathHash,0,Random.Range(0f,1f));
-    }
+        [SerializeField]
+        private GameObject[] disableSchedule;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.U))
+        [SerializeField]
+        private GameObject[] enableSchedule;
+
+        [SerializeField]
+        private AudioSource deathSound;
+
+        public void Destroy()
         {
-            DestroyMeP();
+            deathSound.Play();
 
+            Destroy(GetComponent<Animator>());
+            Destroy(GetComponent<NavMeshAgent>());
+            Destroy(GetComponent<BoxCollider>());
+            Destroy(GetComponent<FollowTarget>());
 
+            foreach (GameObject picked in disableSchedule)
+            {
+                picked.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            }
+
+            foreach (GameObject picked in enableSchedule)
+            {
+                picked.GetComponent<MeshRenderer>().enabled = true;
+                picked.AddComponent<Rigidbody>();
+                picked.GetComponent<Rigidbody>().AddForce((transform.position - FindObjectOfType<GoldPlayerController>().gameObject.transform.position) * 100);
+            }
         }
     }
 
-    public void DestroyMeP()
-    {
-        deathSound.Play();
-        GetComponent<Animator>().StopPlayback();
-        GetComponent<Animator>().enabled = false;
-        GetComponent<NavMeshAgent>().isStopped = true;
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<FollowPlayer>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
-        //foreach(GameObject part in disableMe)
-        //{
-        //    part.AddComponent<Rigidbody>();
-        //}
-
-        foreach (GameObject go in disableMe)
-        {
-            go.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        }
-
-        foreach (GameObject go in enableMe)
-        {
-            go.GetComponent<MeshRenderer>().enabled = true;
-            go.AddComponent<Rigidbody>();
-            go.GetComponent<Rigidbody>().AddForce((transform.position - FindObjectOfType<GoldPlayerController>().gameObject.transform.position) * 100);
-        }
-    }
 }

@@ -10,8 +10,6 @@ public class ScoreManager : MonoBehaviour
     private float deathPenalty;
     [SerializeField]
     private float fadeOutDuration;
-    [SerializeField]
-    private float freezeTime;
 
     [SerializeField]
     private TextMeshProUGUI scoreText;
@@ -19,9 +17,6 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI penaltyText;
     [SerializeField]
     private Image background;
-
-    //[SerializeField]
-    //private Color color;
 
     private float freezeTimer;
     private float score;
@@ -40,7 +35,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        //fadeOutDuration = freezeTime;
         freezeTimer = 0;
         Score = 0;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().death.AddListener(OnPlayerDeath);
@@ -86,7 +80,6 @@ public class ScoreManager : MonoBehaviour
             float alpha = Mathf.Lerp(1f, 0f, currentTime / fadeOutDuration);
             if(alpha > .95)
             {
-                //ColorUtility.TryParseHtmlString("FFEECE", out Color color);
                 background.color = new Color(255, 255, 255, 255);
             }
             else if(alpha < .05)
@@ -96,7 +89,6 @@ public class ScoreManager : MonoBehaviour
 
             if (alpha > .95)
             {
-                //ColorUtility.TryParseHtmlString("FFEECE",out Color color);
                 penaltyText.color = new Color(penaltyText.color.r, penaltyText.color.g, penaltyText.color.b,255);
             }
             else if (alpha < .05)
@@ -104,19 +96,19 @@ public class ScoreManager : MonoBehaviour
                 penaltyText.color = new Color(penaltyText.color.r, penaltyText.color.g, penaltyText.color.b, 0);
             }
 
-            //penaltyText.color = new Color(penaltyText.color.r, penaltyText.color.g, penaltyText.color.b, alpha);
             currentTime += Time.deltaTime;
             yield return null;
         }
         yield break;
     }
 
-    public void FreezeScore()
+    public void FreezeScore(float freezeTime)
     {
+        if (freezeTime == 0) return;
+
         freezeTimer = freezeTime;
         penaltyText.color = new Color32(88, 160, 241, 255);
         penaltyText.text = " Время заморожено ";
-        //penaltyText.color = new Color(88,160,241,255);
         fadeOutDuration = 3;
         StartCoroutine(FadeOut());
     }
