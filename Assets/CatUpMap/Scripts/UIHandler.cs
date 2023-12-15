@@ -1,6 +1,5 @@
 ﻿using Hertzole.GoldPlayer;
 using Tayx.Graphy;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,56 +10,49 @@ namespace CatUp
         [SerializeField]
         private GameObject UIMenu;
         [SerializeField]
-        private GameObject UIButton;
+        private GameObject UIMenuButton;
         [SerializeField]
-        private GameObject UIScore;
+        private GameObject UIEndGameScreen;
         [SerializeField]
-        private GameObject EndGameScreen;
-
-
+        private GameObject UIDeathScreen;
         [SerializeField]
-        private TextMeshProUGUI record;
-        [SerializeField]
-        private TextMeshProUGUI record2;
+        private GameObject UIHealth;
 
         public void Start()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            FindObjectOfType<PlayerHealth>().death.AddListener(OnPlayerDeath);
         }
 
         public void StopGame()
         {
+            SetupSceneUI(true,false,false,false,false);
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 0;
+
             FindObjectOfType<GoldPlayerController>().enabled = false;
-            UIButton.SetActive(false);
-            UIMenu.SetActive(true);
-            UIScore.SetActive(false);
         }
 
         public void ResumeGame()
         {
+            SetupSceneUI(false,true,false,false,true);
+
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
             FindObjectOfType<GoldPlayerController>().enabled = true;
-            UIButton.SetActive(true);
-            UIScore.SetActive(true);
-            UIMenu.SetActive(false);
             Time.timeScale = 1;
         }
 
         public void EndGame()
         {
-            record.text = "Лучшее время : " + FindObjectOfType<ScoreManager>().Score.ToString() + " секунд";
-            record2.text = "Текущий забег : " + FindObjectOfType<ScoreManager>().Score.ToString() + " секунд";
+            SetupSceneUI(false,false,false,true,false);
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            UIButton.SetActive(false);
-            UIScore.SetActive(false);
-            UIMenu.SetActive(false);
-            EndGameScreen.SetActive(true);
         }
 
         public void RestartGame()
@@ -71,7 +63,7 @@ namespace CatUp
 
         public void Update()
         {
-            if(Input.GetKeyDown(KeyCode.F) && !EndGameScreen.activeSelf)
+            if(Input.GetKeyDown(KeyCode.F) && (!UIEndGameScreen.activeSelf && !UIDeathScreen.activeSelf))
             {
                 StopGame();
             }
@@ -85,6 +77,23 @@ namespace CatUp
         public void EnableStatistics()
         {
             FindObjectOfType<GraphyManager>(true).gameObject.SetActive(true);
+        }
+
+        private void OnPlayerDeath()
+        {
+            SetupSceneUI(false,false,true,false,false);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        private void SetupSceneUI(bool menu, bool menuButton, bool deathScreen, bool endGameScreen,bool health)
+        {
+            UIDeathScreen.SetActive(deathScreen);
+            UIMenu.SetActive(menu);
+            UIMenuButton.SetActive(menuButton);
+            UIEndGameScreen.SetActive(endGameScreen);
+            UIHealth.SetActive(health);
         }
 
     }

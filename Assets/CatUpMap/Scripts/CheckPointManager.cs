@@ -17,11 +17,11 @@ namespace CatUp
         public void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<Health>().death.AddListener(OnPlayerDeath);
+            player.GetComponent<PlayerHealth>().respawn.AddListener(Respawn);
             checkPoints = FindObjectsOfType<CheckPoint>();
         }
 
-        private void OnPlayerDeath()
+        private void Respawn()
         {
             player.GetComponent<GoldPlayerController>().SetPositionAndRotation(GetCurrentCheckPointTransform(CheckPoint.activeID).position, GetCurrentCheckPointTransform(CheckPoint.activeID).eulerAngles.y);
             player.GetComponent<GoldPlayerController>().Movement.AddForce(Vector3.zero, 0);
@@ -48,7 +48,7 @@ namespace CatUp
             if(Input.GetKeyDown(KeyCode.O) && restartTimer > restartTime)
             {
                 restartTimer = 0;
-                player.GetComponent<Health>().death.Invoke();
+                player.GetComponent<PlayerHealth>().death.Invoke();
             }
         }
     }

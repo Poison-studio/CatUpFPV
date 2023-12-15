@@ -1,0 +1,23 @@
+﻿title: GarroshStart
+tags:
+---
+<<StartDialogue>>
+Я ждал тебя, лиза предупредила меня, что ты прийдёшь.
+-> 1. Вы отец лизы? Вы не очень похожи на нее...
+    <<jump GarroshLier>>
+-> 2. Что происходит в городе?
+    <<jump GarroshChurch>>
+===
+
+title: GarroshChurch
+---
+Зайди в церковь, тебе там объяснят.
+<<EndDialugue>>
+===
+
+title: GarroshLier
+---
+Эммм хммм ... 
+Она вся в мать.
+<<EndDialugue>>
+===

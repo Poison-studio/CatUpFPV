@@ -1,0 +1,19 @@
+{
+  "projectFileVersion": 2,
+  "sourceFiles": [
+    "**/*.yarn"
+  ],
+  "excludeFiles": [
+    "**/*~/*"
+  ],
+  "localisation": {
+    "ru": {
+      "assets": "${UnityProjectRoot}/Assets/CatUpMap/Yarn Project/RU"
+    },
+    "en": {
+      "assets": "${UnityProjectRoot}/Assets/CatUpMap/Yarn Project/EN"
+    }
+  },
+  "baseLanguage": "ru",
+  "compilerOptions": {}
+}

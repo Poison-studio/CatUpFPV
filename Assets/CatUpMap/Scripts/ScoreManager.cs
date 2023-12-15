@@ -37,7 +37,7 @@ public class ScoreManager : MonoBehaviour
     {
         freezeTimer = 0;
         Score = 0;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().death.AddListener(OnPlayerDeath);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().death.AddListener(OnPlayerDeath);
     }
 
     private void OnPlayerDeath()

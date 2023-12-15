@@ -5,17 +5,17 @@ namespace CatUp
 {
     public class TeleportCreatureModule : MonoBehaviour
     {
-        [SerializeField]
-        private FollowTarget followTargetScript;
+        private void Start()
+        {
+            gameObject.AddComponent<Rigidbody>();
+            gameObject.GetComponent<FollowTarget>().SetupTarget(GameObject.FindWithTag("Player").transform);
+        }
 
         public void OnCollisionEnter(Collision collision)
         {
             Destroy(GetComponent<Rigidbody>());
-
             GetComponent<NavMeshAgent>().enabled = true;
-
-            followTargetScript.SetupTarget(GameObject.FindWithTag("Player").transform);
-
+            gameObject.GetComponent<FollowTarget>().Follow();
             Destroy(this);
         }
     }
