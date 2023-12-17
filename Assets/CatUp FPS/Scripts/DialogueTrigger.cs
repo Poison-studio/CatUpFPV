@@ -62,8 +62,6 @@ namespace CatUp
 
         public void Update()
         {
-            Debug.Log(dialogueRunner.IsDialogueRunning);
-
             if(!dialogueRunner.IsDialogueRunning)
             {
 
