@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/CatUpMap/Scenes/Cat Up Map 1.unity
+    path: Assets/CatUp Maps/Scenes/Cat Up Tornado map.unity
     guid: 76d5b62c1ec3b1441b0e54987517c7e0
   m_configObjects: {}

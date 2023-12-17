@@ -9,3 +9,5 @@ Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид-mesh.asset.meta
 Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид.prefab filter=lfs diff=lfs merge=lfs -text
 Assets/CatUpMap/MeshBaker/Meshes/Дальний[[:space:]]вид.prefab.meta filter=lfs diff=lfs merge=lfs -text
 Assets/CatUpMap/MeshBaker/Meshes/Земля.prefab filter=lfs diff=lfs merge=lfs -text
+Assets/CatUp[[:space:]]Maps/Scenes/Cat[[:space:]]Up[[:space:]]Tornado[[:space:]]map/** filter=lfs diff=lfs merge=lfs -text
+Assets/CatUp[[:space:]]Maps/MeshBaker/Meshes/** filter=lfs diff=lfs merge=lfs -text
