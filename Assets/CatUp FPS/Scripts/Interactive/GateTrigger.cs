@@ -24,7 +24,7 @@ namespace CatUp
 
         private int behaviour;
 
-        public string text
+        public string InteractableText
         {
             get
             {
@@ -46,17 +46,8 @@ namespace CatUp
             else if(behaviour == 1)
             {
                 animator.SetTrigger("OpenGate");
-                //audioSource.Play();
                 StartCoroutine(playAudioSequentially());
                 GetComponent<BoxCollider>().enabled = false;
-
-                //FollowTarget[] targets = FindObjectsOfType<FollowTarget>();
-
-                //foreach (FollowTarget target in targets)
-                //{
-                //    target.SetupTarget(FindObjectOfType<GoldPlayerController>().transform);
-                //    target.Follow();
-                //}
             }
         }
 
@@ -105,12 +96,6 @@ namespace CatUp
         void Start()
         {
             behaviour = 0;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 

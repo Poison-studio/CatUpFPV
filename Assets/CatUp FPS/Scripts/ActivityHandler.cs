@@ -39,7 +39,7 @@ namespace CatUp
             Cursor.lockState = CursorLockMode.Confined;
             characterController.Movement.CanMoveAround = false;
             characterController.Camera.CanLookAround = false;
-            shotgun.isActive = false;
+            //shotgun.isActive = false;
         }
 
         [YarnCommand("EndDialugue")]
@@ -52,7 +52,7 @@ namespace CatUp
             Cursor.lockState = CursorLockMode.Locked;
             characterController.Movement.CanMoveAround = true;
             characterController.Camera.CanLookAround = true;
-            shotgun.isActive = true;
+            //shotgun.isActive = true;
 
             if(camera != null)
             {

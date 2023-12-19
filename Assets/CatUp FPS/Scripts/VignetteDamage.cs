@@ -28,10 +28,11 @@ namespace CatUp
             while (currentTime < fadeOutDuration)
             {
                 float alpha = Mathf.Lerp(1f, 0f, currentTime / fadeOutDuration);
+
                 vignette.mainColor =  new Color(vignette.mainColor.r, vignette.mainColor.g, vignette.mainColor.b, alpha);
 
-
                 currentTime += Time.deltaTime;
+
                 yield return null;
             }
 

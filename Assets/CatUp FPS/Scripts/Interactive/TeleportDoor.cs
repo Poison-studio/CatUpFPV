@@ -23,7 +23,7 @@ namespace CatUp
 
         [SerializeField]
         private string uiText;
-        public string text 
+        public string InteractableText 
         {
             get
             {

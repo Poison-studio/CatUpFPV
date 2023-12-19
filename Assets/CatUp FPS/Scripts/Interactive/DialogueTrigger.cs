@@ -12,9 +12,6 @@ namespace CatUp
         [SerializeField]
         private GameObject virtualCamera;
 
-        //[SerializeField]
-        //private LineView lineView;
-
         [SerializeField]
         private string text1;
 
@@ -24,7 +21,7 @@ namespace CatUp
         [SerializeField]
         private Animator animator;
 
-        public string text
+        public string InteractableText
         {
             get
             {
@@ -51,13 +48,6 @@ namespace CatUp
             {
                 animator.SetBool("Talk", true);
             }
-
-            
-            //if (gameObject.GetComponent<BoxCollider>())
-            //{
-            //    gameObject.GetComponent<BoxCollider>().enabled = false;
-
-            //}
         }
 
         public void Update()
