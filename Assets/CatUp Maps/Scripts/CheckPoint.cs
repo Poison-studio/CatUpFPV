@@ -1,70 +1,75 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace CatUp
 {
     public class CheckPoint : MonoBehaviour
     {
-        //Get current active checkpoint
-        public static int activeID { get; private set; } = 0;
+        public static UnityEvent<Transform> newCheckpointActivated;
 
-        //После инициализации эта переменная содержит в себе общее число чекпоинтов на карте
-        public static int maxID { get; private set; } = 0;
-
-        [SerializeField]
-        private float freezeTime;
+        //Текущий активированный чекпоинт
+        private static Transform activeCheckPoint;
 
         [SerializeField]
-        private ParticleSystem[] commonEffect;
+        private string interactWithTag;
 
         [SerializeField]
-        private ParticleSystem[] pickupEffect;
+        private ParticleSystem[] loopParticles;
 
         [SerializeField]
-        private AudioSource pickupAudioEffect;
+        private ParticleSystem[] pickupParticles;
 
-        public int localID { get; private set; }
+        [SerializeField]
+        private AudioSource pickupAudio;
+
+        [Tooltip("Проигрывать эффекты при использовании чекпоинта")]
+        [SerializeField]
+        private bool playPickupEffect;
+
+        [Tooltip("Будет ли чекпоинт вызывать newCheckpointActivated эвент при активации чекпоинта")]
+        [SerializeField]
+        private bool useNotifyEvent;
 
         private void Awake()
         {
-            localID = maxID;
-            maxID++;
+            if(newCheckpointActivated ==  null)
+            {
+                newCheckpointActivated = new UnityEvent<Transform>();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag != "Player") return;
+            if (other.tag != interactWithTag) return;
 
-            activeID = localID;
+            activeCheckPoint = transform;
 
-            DisableCommonEffect();
-            PickupEffect();
+            if(newCheckpointActivated != null && useNotifyEvent)
+            {
+                newCheckpointActivated.Invoke(transform);
+            }
 
-            //На некоторых чекпоинтах мы не хотим проигрывать звуки, так что их можно просто удалить
-            if (pickupAudioEffect != null) pickupAudioEffect.Play();
+            if (playPickupEffect)
+            {
+                //Stop loop particles
+                foreach (ParticleSystem picked in loopParticles)
+                {
+                    picked.Stop();
+                }
 
+                //Play pickup particles
+                foreach (ParticleSystem picked in pickupParticles)
+                {
+                    picked.Emit(50);
+                }
+
+                //Play pickup sound
+                pickupAudio.Play();
+            }
 
             GetComponent<BoxCollider>().enabled = false;
-
         }
 
-        private void DisableCommonEffect()
-        {
-            if (commonEffect.Length == 0) return;
-            foreach (ParticleSystem picked in commonEffect)
-            {
-                picked.Stop();
-            }
-        }
-
-        private void PickupEffect()
-        {
-            if (pickupEffect.Length == 0) return;
-
-            foreach (ParticleSystem picked in pickupEffect)
-            {
-                picked.Emit(50);
-            }
-        }
+        public static Transform GetActiveCheckPoint() => activeCheckPoint;
     }
-
 }

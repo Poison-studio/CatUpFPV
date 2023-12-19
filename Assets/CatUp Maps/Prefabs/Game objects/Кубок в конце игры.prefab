@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1970091226109610729}
+  m_Father: {fileID: 2483735572554087874}
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!198 &1099186134231412639
 ParticleSystem:
@@ -4978,8 +4978,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6511857628633497015}
-  - {fileID: 7779698119656465308}
-  - {fileID: 1099186134231412705}
+  - {fileID: 2483735572554087874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8033191699362204760
@@ -5015,12 +5014,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6fa70c8bbbb62240a130759f685b23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winEffect:
+  interactWithTag: Player
+  pickupParticles:
   - {fileID: 7779698119656465298}
   - {fileID: 1099186134231412639}
-  cup: {fileID: 5842598835920938765}
-  cart: {fileID: 0}
-  VirtualCamera: {fileID: 0}
+  objectsToDisable:
+  - {fileID: 5842598835920938765}
+  objectsToEnable: []
+  disableTriggerObject: 1
+--- !u!1 &6647826502629083597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2483735572554087874}
+  m_Layer: 0
+  m_Name: Pickup Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2483735572554087874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6647826502629083597}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7779698119656465308}
+  - {fileID: 1099186134231412705}
+  m_Father: {fileID: 1970091226109610729}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7779698119656465309
 GameObject:
   m_ObjectHideFlags: 0
@@ -5052,7 +5086,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1970091226109610729}
+  m_Father: {fileID: 2483735572554087874}
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!198 &7779698119656465298
 ParticleSystem:

@@ -4,6 +4,9 @@ namespace CatUp
 {
     public class TargetFPS : MonoBehaviour
     {
-        void Start() => Application.targetFrameRate = 60;
+        [SerializeField]
+        private int targetFPS;
+
+        void Start() => Application.targetFrameRate = targetFPS;
     }
 }
