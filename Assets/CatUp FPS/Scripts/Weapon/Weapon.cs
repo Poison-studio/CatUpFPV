@@ -1,6 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace CatUp
@@ -72,6 +70,11 @@ namespace CatUp
 
             Rigidbody body = gameObject.AddComponent<Rigidbody>();
             body.AddForce((transform.forward * 10 + transform.up * 60));
+        }
+
+        public virtual void PickupWeapon()
+        {
+            animator.SetTrigger("Show");
         }
 
         protected virtual void Update()

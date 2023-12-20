@@ -12,16 +12,24 @@ position: 269,-166
     <<if $KiraStatus eq 0>>
     <<jump KiraStart>>
     <<elseif $KiraStatus eq 1>>
-    <<jump Ignore>>
+    <<jump KiraHelp>>
     <<endif>>
 ===
 
 title: KiraStart
-position: 272,10
+position: 575,-162
 ---
 Наконец ты очнулся, я думала не дождусь.
 Мне нужна помощь, весь город захвачен нечестью, мне нужно чтобы ты нашёл моего отца.
 Он священник, найди церковь, мой отец будет там.
+    <<set $KiraStatus to 1>>
+    <<EndDialugue>>
+===
+
+title: KiraHelp
+position: 270,11
+---
+Чем я могу помочь тебе?
 -> 1. Где я могу найти церковь?
     <<jump Church>>
 -> 2. Что произошло в городе?
@@ -29,37 +37,30 @@ position: 272,10
 ===
 
 title: WhatHappend
-position: 543,10
+position: 581,22
 ---
-Я не знаю, найди моего отца, он должен нам помочь.
+Весь город наводнили скелеты. Часть жителей успела укрыться в ратуше, что случилось с остальными, я не знаю.
     <<set $KiraStatus to 1>>
     <<EndDialugue>>
 ===
 
 title: Church
-position: 272,215
+position: 269,216
 ---
 Церковь находится на горе, слева от города.
     <<jump PickUpWeapon>>
 ===
 
 title: PickUpWeapon
-position: 558,216
+position: 597,213
 ---
 Там опасно, возьми дробовик, он лежит справа на ящиках.
     <<set $KiraStatus to 1>>
     <<EndDialugue>>
 ===
 
-title: Ignore
-position: 550,-168
----
-Найди моего отца. Он в церкви слева от города.
-    <<EndDialugue>>
-===
-
 title: DontOpenGate
-position: 11,-165
+position: -5,-363
 ---
     <<StartDialogue>>
 Не советую тебе открывать эти ворота. Скелеты могут услышать.

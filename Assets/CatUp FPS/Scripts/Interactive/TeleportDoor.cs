@@ -1,85 +1,37 @@
 using UnityEngine;
-using System.Collections;
 using Hertzole.GoldPlayer;
+using System.Collections;
 
 namespace CatUp
 {
-    public class TeleportDoor : MonoBehaviour, IInteractable
+    public class TeleportDoor : Interactable
     {
         [SerializeField]
         private Transform destination;
 
         [SerializeField]
-        private Q_Vignette_Single vignette;
+        private float fadeDuration;
 
-        [SerializeField]
-        private AudioSource openDoorSound;
+        private VignetteTeleport vignetteTeleport;
 
-        [SerializeField]
-        private float fadeOutDuration;
-
-        [SerializeField]
-        private float fadeInDuration;
-
-        [SerializeField]
-        private string uiText;
-        public string InteractableText 
+        private void Start()
         {
-            get
-            {
-                return uiText;
-            }
-            set
-            {
-                uiText = value;
-            }
+            vignetteTeleport = FindObjectOfType<VignetteTeleport>();
         }
 
-        public void Interact()
+        public override void Interact(GameObject interactor)
         {
-            openDoorSound.Play();
-            Perform();
+            base.Interact(interactor);
+
+            vignetteTeleport.FadeInOut(fadeDuration);
+
+            StartCoroutine(Teleport());
         }
 
-        public void Perform()
+        private IEnumerator Teleport()
         {
-            StartCoroutine(FadeInOut());
-        }
+            yield return new WaitForSeconds(fadeDuration);
 
-        IEnumerator FadeInOut()
-        {
-            //player.enabled = false;
-            float currentTime = 0f;
-
-            while (currentTime < fadeInDuration)
-            {
-                float alpha = Mathf.Lerp(0f, 1f, currentTime / fadeInDuration);
-                //vignette.mainColor = new Color(vignette.mainColor.r, vignette.mainColor.g, vignette.mainColor.b, alpha);
-                //vignette.SetVignetteMainScale(alpha*5);
-                vignette.mainScale = alpha * 5f;
-                currentTime += Time.deltaTime;
-                yield return null;
-            }
-
-            currentTime = 0f;
-            TeleportPlayer();
-
-            while (currentTime < fadeOutDuration)
-            {
-                float alpha = Mathf.Lerp(1f, 0f, currentTime / fadeOutDuration);
-                //vignette.mainColor = new Color(vignette.mainColor.r, vignette.mainColor.g, vignette.mainColor.b, alpha);
-                //vignette.SetVignetteMainScale(alpha*5);
-                vignette.mainScale = alpha * 5f;
-                currentTime += Time.deltaTime;
-                yield return null;
-            }
-
-            vignette.mainScale = 0f;
-            //player.enabled = true;
-            yield break;
-        }
-        private void TeleportPlayer()
-        {
             FindObjectOfType<GoldPlayerController>().SetPositionAndRotation(destination.transform.position, destination.transform.eulerAngles.y);
         }
     }

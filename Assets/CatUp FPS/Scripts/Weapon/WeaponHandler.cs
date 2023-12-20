@@ -1,4 +1,6 @@
 ﻿using Hertzole.GoldPlayer;
+using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 namespace CatUp
@@ -8,11 +10,10 @@ namespace CatUp
         [SerializeField]
         private GoldPlayerController goldPlayerController;
 
-        //Сериализация ВРЕМЕННАЯ
-        [SerializeField]
         private Weapon pickedWeapon;
 
-        private Weapon[] weapons;
+        [SerializeField]
+        private List<Weapon> weapons;
 
         private Vector3 currentWeaponRotation;
         private Vector3 targetWeaponRotation;
@@ -23,7 +24,8 @@ namespace CatUp
 
         public void Start()
         {
-            pickedWeapon.wasFire.AddListener(ApplyImpact);
+            weapons = new List<Weapon>();
+            //pickedWeapon.wasFire.AddListener(ApplyImpact);
         }
 
         public void Update()
@@ -35,17 +37,30 @@ namespace CatUp
 
         public void Shoot()
         {
-            pickedWeapon.Shoot();
+            pickedWeapon?.Shoot();
         }
 
         public void Reload()
         {
-            pickedWeapon.Reload();
+            pickedWeapon?.Reload();
         }
 
         public void SwapWeapon()
         {
 
+        }
+
+        public void PickupWeapon(GameObject weaponToPickup)
+        {
+            GameObject newWeaponGameObject = Instantiate(weaponToPickup);
+            newWeaponGameObject.transform.parent = transform;
+            Weapon newWeapon = newWeaponGameObject.GetComponent<Weapon>();
+            weapons.Add(newWeapon);
+
+            pickedWeapon = newWeapon;
+            pickedWeapon.PickupWeapon();
+
+            pickedWeapon.wasFire.AddListener(ApplyImpact);
         }
 
         private void ApplyImpact(ShootImpact shootImpact)

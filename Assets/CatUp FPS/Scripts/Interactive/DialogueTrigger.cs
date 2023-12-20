@@ -1,19 +1,17 @@
-using Cinemachine;
 using UnityEngine;
 using Yarn.Unity;
 
 namespace CatUp
 {
-    public class DialogueTrigger : MonoBehaviour, IInteractable
+    public class DialogueTrigger : Interactable
     {
-        [SerializeField]
+        private static DialogueTrigger active;
+
         private DialogueRunner dialogueRunner;
+        private SaveLoadSystem saveLoadSystem;
 
         [SerializeField]
         private GameObject virtualCamera;
-
-        [SerializeField]
-        private string text1;
 
         [SerializeField]
         private string dialogieToTrigger;
@@ -21,27 +19,27 @@ namespace CatUp
         [SerializeField]
         private Animator animator;
 
-        public string InteractableText
+        public GameObject interactor { get; private set; }
+
+        private void Start()
         {
-            get
-            {
-                return text1;
-            }
-            set
-            {
-                text1 = value;
-            }
+            dialogueRunner = FindObjectOfType<DialogueRunner>();
+            saveLoadSystem = FindObjectOfType<SaveLoadSystem>();
         }
 
-        public void Interact()
+        public override void Interact(GameObject interactor)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            base.Interact(interactor);
+
+            active = this;
+
+            this.interactor = interactor;
+
             dialogueRunner.StartDialogue(dialogieToTrigger);
+
             if (virtualCamera != null)
             {
                 virtualCamera.SetActive(true);
-                ActivityHandler.camera = virtualCamera;
             }
 
             if (animator != null)
@@ -50,16 +48,43 @@ namespace CatUp
             }
         }
 
-        public void Update()
+        [YarnCommand("StartDialogue")]
+        public static void StartDialogue()
         {
-            if(!dialogueRunner.IsDialogueRunning)
-            {
+            active.interactor.GetComponent<PlayerAccessPoint>().Interactor.active = false;
+            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Movement.CanMoveAround = false;
+            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Camera.CanLookAround = false;
 
-                if (animator != null)
-                {
-                    animator.SetBool("Talk", false);
-                }
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+
+            active.saveLoadSystem.Load();
+        }
+
+        [YarnCommand("EndDialugue")]
+        public static void EndDialogue()
+        {
+            active.interactor.GetComponent<PlayerAccessPoint>().Interactor.active = true;
+            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Movement.CanMoveAround = true;
+            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Camera.CanLookAround = true;
+
+            if(active.virtualCamera != null)
+            {
+                active.virtualCamera.SetActive(false);
             }
+
+            active.EnableCollider(active.colliderToDisable);
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            active.saveLoadSystem.Save();
+
+            if (active.animator != null)
+            {
+                active.animator.SetBool("Talk", false);
+            }
+
         }
     }
 }

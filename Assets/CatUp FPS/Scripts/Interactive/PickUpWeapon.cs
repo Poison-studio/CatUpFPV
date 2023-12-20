@@ -5,15 +5,13 @@ namespace CatUp
     public class PickUpWeapon : Interactable
     {
         [SerializeField]
-        private Animator animator;
+        private GameObject weaponPrefab;
 
         public override void Interact(GameObject interactor)
         {
             base.Interact(interactor);
 
-            //interactor.GetComponent<Shotgun>().isActive = true;
-
-            animator.SetTrigger("Show");
+            interactor.GetComponent<PlayerAccessPoint>().WeaponHandler.PickupWeapon(weaponPrefab);
         }
     }
 

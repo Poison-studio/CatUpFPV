@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace CatUp
@@ -12,38 +11,43 @@ namespace CatUp
         public string InteractableText => interactableText;
 
         [SerializeField]
-        protected bool disableAfterInteract;
+        protected bool disableObjectAfterInteract;
+
+        [SerializeField]
+        protected bool disableColliderAfterInteract;
+
+        [SerializeField]
+        protected BoxCollider colliderToDisable;
 
         [SerializeField]
         protected AudioClip[] audioClips;
 
         [SerializeField]
-        protected AudioSource audioSource;
+        protected float audioVolume;
+
+        [SerializeField]
+        protected float audioPitch;
+
+        [SerializeField]
+        protected Interactable interactableQueue;
 
         public virtual void Interact(GameObject interactor)
         {
-            PlayAudio();
+            interactor.GetComponent<PlayerAccessPoint>().AudioPlayer.PlayAudio(audioClips, audioVolume, audioPitch);
 
-            if (disableAfterInteract) gameObject.SetActive(false);
+            if (disableColliderAfterInteract) colliderToDisable.enabled = false;
+
+            if (disableObjectAfterInteract) gameObject.SetActive(false);
         }
 
-        public void PlayAudio() => StartCoroutine(IPlayAudio());
-
-        private IEnumerator IPlayAudio()
+        public virtual void EnableCollider()
         {
-            yield return null;
+            GetComponent<BoxCollider>().enabled = true;
+        }
 
-            for (int i = 0; i < audioClips.Length; i++)
-            {
-                audioSource.clip = audioClips[i];
-
-                audioSource.Play();
-
-                while (audioSource.isPlaying)
-                {
-                    yield return null;
-                }
-            }
+        public virtual void EnableCollider(BoxCollider colliderToEnable)
+        {
+            colliderToDisable.enabled = true;
         }
     }
 

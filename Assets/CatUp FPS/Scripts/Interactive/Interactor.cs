@@ -11,6 +11,8 @@ namespace CatUp
         [SerializeField]
         private TextMeshProUGUI interactableText;
 
+        public bool active { get; set; } = true;
+
         private void Update()
         {
             Ray r = new Ray(transform.position, transform.forward);
@@ -21,7 +23,7 @@ namespace CatUp
                 if (hitInfo.collider.gameObject.TryGetComponent(out Interactable picked))
                 {
 
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E) && active)
                     {
                         picked.Interact(gameObject);
                     }
