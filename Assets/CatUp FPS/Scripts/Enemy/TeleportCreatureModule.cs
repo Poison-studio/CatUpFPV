@@ -8,14 +8,14 @@ namespace CatUp
         private void Start()
         {
             gameObject.AddComponent<Rigidbody>();
-            gameObject.GetComponent<FollowTarget>().SetupTarget(GameObject.FindWithTag("Player").transform);
+            //gameObject.GetComponent<FollowTarget>().SetupTarget(GameObject.FindWithTag("Player").transform);
         }
 
         public void OnCollisionEnter(Collision collision)
         {
             Destroy(GetComponent<Rigidbody>());
             GetComponent<NavMeshAgent>().enabled = true;
-            gameObject.GetComponent<FollowTarget>().Follow();
+            //gameObject.GetComponent<FollowTarget>().Follow();
             Destroy(this);
         }
     }

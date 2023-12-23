@@ -29,13 +29,13 @@ public class Spawner : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.K))
         {
-            FollowTarget[] targets = FindObjectsOfType<FollowTarget>();
+            //FollowTarget[] targets = FindObjectsOfType<FollowTarget>();
             
-            foreach(FollowTarget target in targets)
-            {
-                target.SetupTarget(FindObjectOfType<GoldPlayerController>().transform);
-                target.Follow();
-            }
+            //foreach(FollowTarget target in targets)
+            //{
+            //    //target.SetupTarget(FindObjectOfType<GoldPlayerController>().transform);
+            //    //target.Follow();
+            //}
 
 
         }

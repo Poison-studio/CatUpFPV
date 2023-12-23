@@ -22,7 +22,6 @@ namespace CatUp
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            FindObjectOfType<PlayerHealth>().death.AddListener(OnPlayerDeath);
         }
 
         public void StopGame()

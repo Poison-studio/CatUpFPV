@@ -6,9 +6,12 @@ namespace CatUp
     public class AudioPlayer : MonoBehaviour
     {
         [SerializeField]
+        private AudioClip[] audioClips;
+
+        [SerializeField]
         private AudioSource audioSource;
 
-        public void PlayAudio(AudioClip[] audioClips, float volume, float pitch) => StartCoroutine(IPlayAudio(audioClips, volume, pitch));
+        public void Play(float volume, float pitch, params AudioClip[] audioClips) => StartCoroutine(IPlayAudio(audioClips, volume, pitch));
 
         private IEnumerator IPlayAudio(AudioClip[] audioClips, float volume, float pitch)
         {
@@ -27,5 +30,7 @@ namespace CatUp
                 }
             }
         }
+
+        public void Play(int clipNumber, float volume, float pitch) => Play(volume, pitch, audioClips[clipNumber]);
     }
 }

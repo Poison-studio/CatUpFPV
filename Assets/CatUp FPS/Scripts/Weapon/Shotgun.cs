@@ -65,11 +65,11 @@ namespace CatUp
 
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootMask))
+            if (Physics.Raycast(Camera.main.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootMask))
             {
                 if (hit.collider.gameObject.tag == "Skeleton")
                 {
-                    hit.collider.gameObject.GetComponent<DestroyMe>().Destroy();
+                    hit.collider.gameObject.GetComponent<Health>().GetDamage(1);
                 }
             }
 

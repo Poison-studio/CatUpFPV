@@ -1,3 +1,4 @@
+using Hertzole.GoldPlayer;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -51,9 +52,9 @@ namespace CatUp
         [YarnCommand("StartDialogue")]
         public static void StartDialogue()
         {
-            active.interactor.GetComponent<PlayerAccessPoint>().Interactor.active = false;
-            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Movement.CanMoveAround = false;
-            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Camera.CanLookAround = false;
+            active.interactor.GetComponent<Interactor>().active = false;
+            active.interactor.GetComponent<GoldPlayerController>().Movement.CanMoveAround = false;
+            active.interactor.GetComponent<GoldPlayerController>().Camera.CanLookAround = false;
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
@@ -64,9 +65,9 @@ namespace CatUp
         [YarnCommand("EndDialugue")]
         public static void EndDialogue()
         {
-            active.interactor.GetComponent<PlayerAccessPoint>().Interactor.active = true;
-            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Movement.CanMoveAround = true;
-            active.interactor.GetComponent<PlayerAccessPoint>().GoldPlayerController.Camera.CanLookAround = true;
+            active.interactor.GetComponent<Interactor>().active = true;
+            active.interactor.GetComponent<GoldPlayerController>().Movement.CanMoveAround = true;
+            active.interactor.GetComponent<GoldPlayerController>().Camera.CanLookAround = true;
 
             if(active.virtualCamera != null)
             {

@@ -33,7 +33,7 @@ namespace CatUp
 
         public virtual void Interact(GameObject interactor)
         {
-            interactor.GetComponent<PlayerAccessPoint>().AudioPlayer.PlayAudio(audioClips, audioVolume, audioPitch);
+            interactor.GetComponent<PlayerAccessPoint>().AudioPlayer.Play(audioVolume, audioPitch, audioClips);
 
             if (disableColliderAfterInteract) colliderToDisable.enabled = false;
 
