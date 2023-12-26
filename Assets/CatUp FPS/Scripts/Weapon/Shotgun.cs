@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 namespace CatUp
@@ -8,9 +9,15 @@ namespace CatUp
         [SerializeField]
         private GameObject[] shells;
 
+        [SerializeField]
+        private Transform shootPosition;
+
         protected override void Update()
         {
             base.Update();
+
+            //Debug.DrawRay(shootPosition.transform.position, shootPosition.transform.forward*1000,Color.red);
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 1000, Color.red);
         }
 
         public override void Reload()
@@ -65,8 +72,10 @@ namespace CatUp
 
             RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootMask))
+            if (Physics.Raycast(shootPosition.transform.position, shootPosition.transform.forward, out hit, Mathf.Infinity, shootMask))
             {
+
+                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.tag == "Skeleton")
                 {
                     hit.collider.gameObject.GetComponent<Health>().GetDamage(1);
