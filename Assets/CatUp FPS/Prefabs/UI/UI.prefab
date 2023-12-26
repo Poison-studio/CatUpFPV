@@ -12865,6 +12865,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crosshair
       objectReference: {fileID: 0}
+    - target: {fileID: 506725226408187666, guid: e22766292a987ad4b94badac5ea11a25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1041477731081841614, guid: e22766292a987ad4b94badac5ea11a25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
