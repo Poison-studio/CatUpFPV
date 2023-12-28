@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2933192753874457673}
   - component: {fileID: 748019355370728450}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 3510337733719580394}
   - component: {fileID: 4924884610552718282}
   - component: {fileID: 4772320903582859312}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 7464420710965430187}
   - component: {fileID: 6751311792957714874}
   - component: {fileID: 7986193987043499189}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: InGameCrosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 5830904012230501229}
   - component: {fileID: 6832282060351655282}
   - component: {fileID: 3471584088201210742}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 8326504380959639693}
   - component: {fileID: 3591408257049249314}
   - component: {fileID: 197291389961128579}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Image.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

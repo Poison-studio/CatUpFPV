@@ -23,7 +23,7 @@ namespace CatUp
             machineData.meshAgent = GetComponent<NavMeshAgent>();
             machineData.audioPlayer = GetComponent<AudioPlayer>();
 
-            patrolState = new Patrol(machineData, GetComponent<PathSelector>().GetPath().Points);
+            patrolState = new Patrol(machineData, GetComponent<Path>().Points);
             endGameIdle = new Idle(machineData, false);
             patrolIdle = new Idle(machineData, true);
             followTargetState = new FollowTarget(machineData, GetComponent<NavMeshAgent>());
@@ -40,7 +40,7 @@ namespace CatUp
 
             InitializeStates();
 
-            if(GetComponent<PathSelector>().GetPath().Points.Length == 0)
+            if(GetComponent<Path>().Points.Length == 0)
             {
                 machine.SetStartState(endGameIdle);
             }

@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 6409697215636058137}
   - component: {fileID: 4969538999874216986}
   - component: {fileID: 2823365466095441702}
-  - component: {fileID: 2847949039526364495}
+  - component: {fileID: 528339954925198994}
   m_Layer: 11
   m_Name: Skeleton
   m_TagString: Skeleton
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   volume: 1
   pitch: 1
   damageZone: {fileID: 1596923284553782533}
---- !u!114 &2847949039526364495
+--- !u!114 &528339954925198994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1470,11 +1470,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3557151829855294552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20eaee174a9a574e8c3a13ec05172cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 327bff5374a24f946b3808614975c22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathID: 0
-  pathManager: {fileID: 0}
+  points: []
 --- !u!1 &3669254403079222548
 GameObject:
   m_ObjectHideFlags: 0
