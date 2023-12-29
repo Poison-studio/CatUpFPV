@@ -15,7 +15,7 @@ namespace CatUp
 
         private void Update()
         {
-            Ray r = new Ray(transform.position, transform.forward);
+            Ray r = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {

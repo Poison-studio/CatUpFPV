@@ -76,7 +76,10 @@ namespace CatUp
 
         public virtual void PickupWeapon()
         {
-            animator.SetTrigger("Show");
+            if(animator != null)
+            {
+                animator.SetTrigger("Show");
+            }
         }
 
         protected virtual void Update()

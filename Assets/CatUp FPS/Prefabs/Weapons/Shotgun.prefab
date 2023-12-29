@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3428875088012431325}
   - component: {fileID: 6166212519343092294}
   - component: {fileID: 5218269922733948463}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7161383352090086787}
   - component: {fileID: 4396009070200907426}
   - component: {fileID: 2587932759970298633}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7816003650802488093}
   - component: {fileID: 8402974084291756247}
   - component: {fileID: 827825168001878291}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Scope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2756135053019967967}
   - component: {fileID: 3286109198281789896}
   - component: {fileID: 1787073597448659000}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: HoldsLever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5654588501092683336}
   - component: {fileID: 4276349822287351538}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Audio No Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3557026450084747762}
   - component: {fileID: 6234070876055572493}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Audio Reloading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 5991856887407709786}
   - component: {fileID: 9166332033968971538}
   - component: {fileID: 260935719761035600}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Thingy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 4738797138200154735}
   - component: {fileID: 835185296035627717}
   - component: {fileID: 6268089097110324424}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ChamberRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 674589117702701578}
   - component: {fileID: 5195467094032088007}
   - component: {fileID: 8884339216058568131}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shell003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2270876161887984114}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +862,7 @@ Transform:
   m_GameObject: {fileID: 3028424687640109809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.002, y: 0.003, z: 0.848}
+  m_LocalPosition: {x: 0.002, y: 0.003, z: 1.248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 6393995373696609087}
   - component: {fileID: 4999113183844094636}
   - component: {fileID: 8231586441537458602}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 5466551904732909191}
   - component: {fileID: 6695821018515926267}
   - component: {fileID: 3169963375579719723}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shell002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 4040752944271661237}
   - component: {fileID: 3990493163904224900}
   - component: {fileID: 8939467445598640579}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shoot Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1152,7 +1152,7 @@ GameObject:
   - component: {fileID: 1874521195457327027}
   - component: {fileID: 5993038731182802116}
   - component: {fileID: 4491069138132540120}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shell001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 6476265175457726832}
   - component: {fileID: 1382456484015788774}
   - component: {fileID: 2598457575272245525}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 6151973641554041294}
   - component: {fileID: 8004305497575990182}
   - component: {fileID: 6059201446348411833}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1401,7 +1401,7 @@ GameObject:
   - component: {fileID: 3676556689834087898}
   - component: {fileID: 5236664471087831938}
   - component: {fileID: 8793054890389075210}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,7 +1484,7 @@ GameObject:
   - component: {fileID: 4124122293944404775}
   - component: {fileID: 7208909459944969404}
   - component: {fileID: 9096836048186151587}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6201,7 +6201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3581563883187295871}
   - component: {fileID: 307363944507457392}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Audio Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6331,7 +6331,7 @@ GameObject:
   - component: {fileID: 7172818619136319260}
   - component: {fileID: 2957005734954693651}
   - component: {fileID: 4197050892263917224}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6346,9 +6346,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8361609436684650738}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.044732355, y: -0.036793295, z: 0.028626949, w: 0.99791074}
-  m_LocalPosition: {x: 0.7, y: -0.28, z: 0.84}
-  m_LocalScale: {x: 1, y: 1, z: 0.32}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.74, y: -0.28, z: 2.53}
+  m_LocalScale: {x: 1.1, y: 1, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3676556689834087898}
@@ -6371,7 +6371,7 @@ Transform:
   - {fileID: 3557026450084747762}
   - {fileID: 6495923679751483882}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 5.243, y: -4.081, z: 3.099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7172818619136319260
 Animator:
   serializedVersion: 5
@@ -6382,7 +6382,7 @@ Animator:
   m_GameObject: {fileID: 8361609436684650738}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f66e8bae1ea6ee648a152121bd499489, type: 2}
+  m_Controller: {fileID: 9100000, guid: d466aded838dfef4fb86da3c7795eca4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6429,15 +6429,18 @@ MonoBehaviour:
   wasFire:
     m_PersistentCalls:
       m_Calls: []
+  wasFireHit:
+    m_PersistentCalls:
+      m_Calls: []
   shootImpact:
     cameraShakeFrequency: 2
     cameraShakeMagnitude: 2
     cameraShakeDuration: 1
     cameraRecoilAmount: 3
     cameraRecoilTime: 1
-    weaponRecoilX: 20
-    weaponRecoilY: 20
-    weaponRecoilZ: 20
+    weaponRecoilX: 5
+    weaponRecoilY: 5
+    weaponRecoilZ: 5
   shootMask:
     serializedVersion: 2
     m_Bits: 8179
@@ -6469,7 +6472,7 @@ GameObject:
   - component: {fileID: 1467882462061776502}
   - component: {fileID: 3148076366159325420}
   - component: {fileID: 8736201035589361057}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Chamber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6552,7 +6555,7 @@ GameObject:
   - component: {fileID: 4964576114826188043}
   - component: {fileID: 8887003987051468545}
   - component: {fileID: 2026433804409879178}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

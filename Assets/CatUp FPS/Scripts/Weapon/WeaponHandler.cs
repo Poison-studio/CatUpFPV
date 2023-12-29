@@ -12,6 +12,9 @@ namespace CatUp
         [SerializeField]
         private PlayerAccessPoint playerAccessPoint;
 
+        [SerializeField]
+        private Transform spawnPoint;
+
         private Weapon pickedWeapon;
 
         [SerializeField]
@@ -53,9 +56,10 @@ namespace CatUp
 
         public void PickupWeapon(GameObject weaponToPickup)
         {
-            GameObject newWeaponGameObject = Instantiate(weaponToPickup);
-            newWeaponGameObject.transform.parent = transform;
+            GameObject newWeaponGameObject = Instantiate(weaponToPickup,spawnPoint);
+
             Weapon newWeapon = newWeaponGameObject.GetComponent<Weapon>();
+
             weapons.Add(newWeapon);
 
             pickedWeapon = newWeapon;
