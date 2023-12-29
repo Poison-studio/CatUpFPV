@@ -1,11 +1,8 @@
-﻿using Hertzole.GoldPlayer;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CatUp
 {
-    /// <summary>
-    /// Никакой логики в этом классе нет, просто место, из которого можно достать нужные компоненты, прикрепленные к игроку
-    /// </summary>
     public class PlayerAccessPoint : MonoBehaviour
     {
         [SerializeField]
@@ -18,14 +15,20 @@ namespace CatUp
 
         public AudioPlayer AudioPlayer => audioPlayer;
 
-        [SerializeField]
-        private GoldPlayerController goldPlayerController;
 
-        public GoldPlayerController GoldPlayerController => goldPlayerController;
+        public UnityEvent PlayerDeath;
 
-        [SerializeField]
-        private Interactor interactor;
+        // Start is called before the first frame update
+        void Start()
+        {
 
-        public Interactor Interactor => interactor;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
+
 }

@@ -11,12 +11,7 @@ namespace CatUp
         [SerializeField]
         private float fadeOutDuration;
 
-        void Start()
-        {
-            FindObjectOfType<PlayerHealth>().getDamage.AddListener(GetDamage);
-        }
-
-        private void GetDamage()
+        public void GetDamage()
         {
             StartCoroutine(FadeOut());
         }

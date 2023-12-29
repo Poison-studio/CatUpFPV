@@ -1,6 +1,5 @@
 ﻿using Hertzole.GoldPlayer;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
 namespace CatUp
@@ -9,6 +8,9 @@ namespace CatUp
     {
         [SerializeField]
         private GoldPlayerController goldPlayerController;
+
+        [SerializeField]
+        private PlayerAccessPoint playerAccessPoint;
 
         private Weapon pickedWeapon;
 
@@ -25,7 +27,6 @@ namespace CatUp
         public void Start()
         {
             weapons = new List<Weapon>();
-            //pickedWeapon.wasFire.AddListener(ApplyImpact);
         }
 
         public void Update()
@@ -61,6 +62,13 @@ namespace CatUp
             pickedWeapon.PickupWeapon();
 
             pickedWeapon.wasFire.AddListener(ApplyImpact);
+
+            playerAccessPoint.PlayerDeath.AddListener(pickedWeapon.DropWeapon);
+
+            foreach (Crosshair crosshair in FindObjectsOfType<Crosshair>()) 
+            {
+                pickedWeapon.wasFireHit.AddListener(crosshair.GetDamage);
+            }
         }
 
         private void ApplyImpact(ShootImpact shootImpact)

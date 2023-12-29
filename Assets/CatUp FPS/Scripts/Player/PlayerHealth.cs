@@ -1,87 +1,37 @@
 using Hertzole.GoldPlayer;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace CatUp
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealth : Health
     {
-        public UnityEvent death;
-        public UnityEvent getDamage;
-        public UnityEvent respawn;
+        [SerializeField]
+        private PlayerAccessPoint playerAccessPoint;
 
         [SerializeField]
-        private AudioSource waterSplashAudio;
+        private VignetteDamage vignetteDamage;
 
         [SerializeField]
-        private int waterDamage;
+        private HealthUI healthUI;
+
+        [SerializeField]
+        private GoldPlayerController goldPlayerController;
 
         [SerializeField]
         private Animator animator;
 
-        [SerializeField]
-        private GoldPlayerController controller;
-
-        [SerializeField]
-        private AudioSource deathSound;
-
-        private int health = 3;
-
-        private bool isDeath = false;
-
-        private void Start()
+        protected override void OnDeath()
         {
-            death.AddListener(OnDeath);
+            animator.SetTrigger("Death");
+            goldPlayerController.enabled = false;
+            playerAccessPoint.PlayerDeath.Invoke();
         }
 
-        public int Health 
-        { 
-            get
-            {
-                return health;
-            }
-            private set
-            {
-                if (isDeath) return;
-
-                health = value;
-
-                getDamage.Invoke();
-
-                if(health <= 0)
-                {
-                    isDeath = true;
-                    death.Invoke();
-                    animator.SetTrigger("Player Death");
-                }
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
+        protected override void OnGetDamage()
         {
-            if (other.gameObject.tag == "Death Zone")
-            {
-                GetDamage(waterDamage);
-                if(Health > 0)
-                {
-                    respawn.Invoke();
-                }
-                //death.Invoke();
-                //respawn.Invoke();
-
-                waterSplashAudio.Play();
-            }
-        }
-
-        public void GetDamage(int damage)
-        {
-            Health -= damage;
-            controller.Camera.CameraShake(2,2,1);
-        }
-
-        private void OnDeath()
-        {
-            deathSound.Play();
+            goldPlayerController.Camera.CameraShake(2, 2, 1);
+            vignetteDamage.GetDamage();
+            healthUI.SetHealth(Value);
         }
     }
 

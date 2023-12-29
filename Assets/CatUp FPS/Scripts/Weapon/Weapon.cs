@@ -6,6 +6,7 @@ namespace CatUp
     public abstract class Weapon : MonoBehaviour
     {
         public UnityEvent<ShootImpact> wasFire;
+        public UnityEvent wasFireHit;
 
         [SerializeField]
         protected ShootImpact shootImpact;
@@ -54,7 +55,7 @@ namespace CatUp
             }
         }
 
-        public void Start()
+        public virtual void Start()
         {
             shootTimer = 0;
             CurrentAmmo = maxAmmo;
@@ -66,6 +67,7 @@ namespace CatUp
 
         public virtual void DropWeapon()
         {
+            GetComponent<Animator>().enabled = false;
             GetComponent<BoxCollider>().enabled = true;
 
             Rigidbody body = gameObject.AddComponent<Rigidbody>();

@@ -1,29 +1,24 @@
-using CatUp;
 using UnityEngine;
 
-public class HealthUI : MonoBehaviour
+namespace CatUp
 {
-    [SerializeField]
-    private GameObject[] Hearts;
-
-    [SerializeField]
-    private PlayerHealth playerHealth;
-
-    public void Start()
+    public class HealthUI : MonoBehaviour
     {
-        playerHealth.getDamage.AddListener(GetDamage);
-    }
+        [SerializeField]
+        private GameObject[] Hearts;
 
-    private void GetDamage()
-    {
-        foreach (GameObject heart in Hearts)
+        public void SetHealth(int remainHealth)
         {
-            heart.SetActive(false);
-        }
+            foreach (GameObject heart in Hearts)
+            {
+                heart.SetActive(false);
+            }
 
-        for (int i = 0; i < playerHealth.Health; i++)
-        {
-            Hearts[i].SetActive(true);
+            for (int i = 0; i < remainHealth - 1; i++)
+            {
+                Hearts[i].SetActive(true);
+            }
         }
     }
+
 }

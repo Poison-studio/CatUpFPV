@@ -8,10 +8,11 @@ namespace CatUp
         [SerializeField]
         private GameObject[] shells;
 
-        protected override void Update()
-        {
-            base.Update();
-        }
+        [SerializeField]
+        private Transform shootPosition;
+
+        [SerializeField]
+        private GameObject InGameCrosshair;
 
         public override void Reload()
         {
@@ -65,13 +66,17 @@ namespace CatUp
 
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, shootMask))
+
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, shootMask))
             {
+
                 if (hit.collider.gameObject.tag == "Skeleton")
                 {
-                    hit.collider.gameObject.GetComponent<DestroyMe>().Destroy();
+                    hit.collider.gameObject.GetComponent<Health>().GetDamage(1);
+                    wasFireHit.Invoke();
                 }
             }
+
 
             wasFire.Invoke(shootImpact);
 
@@ -81,5 +86,4 @@ namespace CatUp
             }
         }
     }
-
 }
