@@ -438,7 +438,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5798424054040738845}
+  - component: {fileID: 5223099454677429841}
   - component: {fileID: 167682127898941977}
+  - component: {fileID: 2082604328363413336}
   m_Layer: 14
   m_Name: Compass
   m_TagString: Untagged
@@ -464,6 +466,27 @@ Transform:
   - {fileID: 6147803703452109271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -57.6, y: -50.29, z: 88.44}
+--- !u!95 &5223099454677429841
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048031557140405079}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02ba27a5e1dfc634485b32d9ba0b8da3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &167682127898941977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,7 +505,6 @@ MonoBehaviour:
   wasFireHit:
     m_PersistentCalls:
       m_Calls: []
-  spawnPosition: {x: 1.1, y: -0.28, z: 3.25}
   shootImpact:
     cameraShakeFrequency: 0
     cameraShakeMagnitude: 0
@@ -499,10 +521,33 @@ MonoBehaviour:
   shootSoundEffect: {fileID: 0}
   noAmmoSoundEffect: {fileID: 0}
   reloadingSoundEffect: {fileID: 0}
-  animator: {fileID: 0}
-  maxAmmo: 0
+  animator: {fileID: 5223099454677429841}
   shootDelay: 0
   reloadDelay: 0
+  reload:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &2082604328363413336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048031557140405079}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7, y: 0.1, z: 0.7}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7376047901171976145
 GameObject:
   m_ObjectHideFlags: 0

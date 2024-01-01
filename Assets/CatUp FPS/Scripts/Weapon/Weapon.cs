@@ -5,7 +5,7 @@ namespace CatUp
 {
     public abstract class Weapon : MonoBehaviour
     {
-        public UnityEvent<ShootImpact> wasFire;
+        public UnityEvent<ShootInfo> wasFire;
         public UnityEvent wasFireHit;
 
         [SerializeField]
@@ -30,48 +30,63 @@ namespace CatUp
         protected Animator animator;
 
         [SerializeField]
-        protected int maxAmmo;
-
-        [SerializeField]
         protected float shootDelay;
 
         [SerializeField]
         protected float reloadDelay;
 
+        public WeaponClip WeaponClip;
+
+        public UnityEvent<WeaponClip> reload;
+
+
         protected float shootTimer;
-
-        private int currentAmmo;
-        protected int CurrentAmmo
-        {
-            get
-            {
-                return currentAmmo;
-            }
-            set
-            {
-                if (value < 0) return;
-
-                currentAmmo = value;
-            }
-        }
 
         public virtual void Start()
         {
             shootTimer = 0;
-            CurrentAmmo = maxAmmo;
         }
 
         public abstract void Shoot();
 
-        public abstract void Reload();
+        public virtual void Reload()
+        {
+            if (shootTimer > 0) return;
+
+            //Не уверен, что эта строчка кода должна быть тут
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) return;
+
+            //BulletsInWeapon = BulletsOutWeapon;
+            WeaponClip.Reload();
+
+            reload.Invoke(WeaponClip);
+            animator.SetTrigger("Reload");
+
+            shootTimer = reloadDelay;
+
+            //reload.Invoke();
+
+            reloadingSoundEffect.Play();
+        }
 
         public virtual void DropWeapon()
         {
+            Debug.Log("Drop weapon");
             GetComponent<Animator>().enabled = false;
             GetComponent<BoxCollider>().enabled = true;
 
+            transform.parent = null;
+
             Rigidbody body = gameObject.AddComponent<Rigidbody>();
-            body.AddForce((transform.forward * 10 + transform.up * 60));
+            body.AddForce((transform.forward * -300 + transform.up * 50 + transform.right * 100));
+        }
+
+        public void Hide()
+        {
+            if(animator!= null)
+            {
+                animator.SetTrigger("Hide");
+            }
         }
 
         public virtual void PickupWeapon()

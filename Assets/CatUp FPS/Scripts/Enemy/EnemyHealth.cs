@@ -30,6 +30,9 @@ namespace CatUp
         [SerializeField]
         private GameObject damageZone;
 
+        [SerializeField]
+        private GameObject detectTarget;
+
         protected override void OnDeath()
         {
             audioPlayer.Play(volume, pitch, deathSound);
@@ -44,6 +47,7 @@ namespace CatUp
             GetComponent<BoxCollider>().enabled = false;
 
             damageZone.SetActive(false);
+            detectTarget.SetActive(false);
 
             foreach (GameObject picked in disableQueue)
             {
