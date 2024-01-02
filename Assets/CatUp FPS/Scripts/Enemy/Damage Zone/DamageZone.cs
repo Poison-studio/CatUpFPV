@@ -25,7 +25,7 @@ namespace CatUp
             if (other.gameObject.tag == "Player")
             {
                 other.gameObject.GetComponent<Health>().GetDamage(damage);
-                audioPlayer.Play(volume,pitch, audioClip);
+                audioPlayer?.Play(volume,pitch, audioClip);
             }
         }
     }

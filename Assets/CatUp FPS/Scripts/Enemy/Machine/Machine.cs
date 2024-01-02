@@ -9,7 +9,7 @@ namespace CatUp
         protected StateMachine machine;
         protected List<State> statesToInitialize;
 
-        public MachineData machineData;
+        public MachineData data;
 
         [SerializeField]
         private string currentState;

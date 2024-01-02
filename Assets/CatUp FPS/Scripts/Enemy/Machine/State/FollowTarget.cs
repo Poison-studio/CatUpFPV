@@ -8,28 +8,42 @@ namespace CatUp
         private NavMeshAgent agent;
         private float distance = 3;
 
-        public FollowTarget(MachineData data,NavMeshAgent agent) : base(data)
+        public FollowTarget(MachineData data, NavMeshAgent agent) : base(data)
         {
             this.agent = agent;
         }
 
         public override void OnStateEnter()
         {
-            machineData.animator.SetTrigger("Run");
+            agent.isStopped = false;
+            data.animator.SetTrigger("Run");
         }
 
         public override void OnStateExit()
         {
-            exitCondition = false;
+            agent.isStopped = true;
+            exitCondition[0] = false;
+            exitCondition[1] = false;
+            data.animator.ResetTrigger("Run");
         }
 
         public override void Perform()
         {
-            agent.SetDestination(machineData.target.position);
-
-            if(Vector3.Distance(machineData.target.position, machineData.agent.position) < distance)
+            if (Vector3.Distance(data.target.position, data.agent.position) < distance)
             {
-                exitCondition = true;
+                exitCondition[0] = true;
+            }
+
+            NavMeshPath navMeshPath = new NavMeshPath();
+            NavMesh.CalculatePath(agent.transform.position,data.target.position,Physics.DefaultRaycastLayers,navMeshPath);
+
+            if (navMeshPath.status == NavMeshPathStatus.PathComplete)
+            {
+                agent.SetPath(navMeshPath);
+            }
+            else if(navMeshPath.status == NavMeshPathStatus.PathPartial)
+            {
+                exitCondition[1] = true;
             }
         }
     }

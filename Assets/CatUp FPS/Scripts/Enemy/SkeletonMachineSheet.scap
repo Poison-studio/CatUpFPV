@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ScappleDocument ID="68872E45-41DE-4EFD-ABEC-087FDDBAC992" Version="1.2">
+   <Notes>
+      <Note Width="39.4531" ID="0" Position="282.8,65.7" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Start</String>
+         <ConnectedNoteIDs>3-4</ConnectedNoteIDs>
+         <PointsToNoteIDs>3-4</PointsToNoteIDs>
+      </Note>
+      <Note Width="33.9844" ID="1" Position="139.8,186.8" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Idle</String>
+         <ConnectedNoteIDs>4, 12</ConnectedNoteIDs>
+      </Note>
+      <Note Width="46.4844" ID="2" Position="410.9,181.3" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Patrol</String>
+         <ConnectedNoteIDs>3, 5</ConnectedNoteIDs>
+         <PointsToNoteIDs>5</PointsToNoteIDs>
+      </Note>
+      <Note Width="78.5156" ID="3" Position="364.1,124.3" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>If Points > 0</String>
+         <ConnectedNoteIDs>0, 2</ConnectedNoteIDs>
+         <PointsToNoteIDs>2</PointsToNoteIDs>
+      </Note>
+      <Note Width="85.5469" ID="4" Position="158.6,121.1" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>if Points == 0</String>
+         <ConnectedNoteIDs>0-1</ConnectedNoteIDs>
+         <PointsToNoteIDs>1</PointsToNoteIDs>
+      </Note>
+      <Note Width="66.7969" ID="5" Position="671.9,179.0" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>PatrolIdle</String>
+         <ConnectedNoteIDs>2</ConnectedNoteIDs>
+         <PointsToNoteIDs>2</PointsToNoteIDs>
+      </Note>
+      <Note Width="156.25" ID="6" Position="490.6,125.0" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>При патрулировании бот останавливается в каждой точке</String>
+      </Note>
+      <Note Width="88.6719" ID="7" Position="242.2,418.0" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Follow Target</String>
+         <ConnectedNoteIDs>8-9, 12</ConnectedNoteIDs>
+         <PointsToNoteIDs>9, 12</PointsToNoteIDs>
+      </Note>
+      <Note Width="149.609" ID="8" Position="211.7,503.2" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Trigger [Target Detected]</String>
+         <ConnectedNoteIDs>7</ConnectedNoteIDs>
+         <PointsToNoteIDs>7</PointsToNoteIDs>
+      </Note>
+      <Note Width="91.0156" ID="9" Position="573.4,421.9" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Deal Damage</String>
+         <ConnectedNoteIDs>7</ConnectedNoteIDs>
+         <PointsToNoteIDs>7</PointsToNoteIDs>
+      </Note>
+      <Note Width="156.25" ID="10" Position="386.7,357.1" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>If Skeleton close enough to player, Damage target
+If Skeleton far, start follow target</String>
+      </Note>
+      <Note Width="156.25" ID="11" Position="197.7,357.1" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>If Skeleton far and cant reach player start throw</String>
+      </Note>
+      <Note Width="48.8281" ID="12" Position="129.7,328.1" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>Throw</String>
+         <ConnectedNoteIDs>1, 7</ConnectedNoteIDs>
+         <PointsToNoteIDs>1, 7</PointsToNoteIDs>
+      </Note>
+      <Note Width="156.25" ID="13" Position="165.6,247.7" FontSize="12">
+         <Appearance>
+            <Alignment>Left</Alignment>
+            <Border Weight="0" Style="Rounded"/>
+         </Appearance>
+         <String>If Player too far or skeleton cant see player, start idle</String>
+      </Note>
+   </Notes>
+   <AutoFit>0-5, 7-9, 12</AutoFit>
+   <NoteStyles>
+      <Style AffectTextColor="No" Name="Bubble (Blue)" AffectFontStyle="No" AffectSize="No" AffectSticky="No" AffectAlignment="No" ID="6354DB6C-3320-462F-8C3D-AE4ECDCCB92B" AffectNoteBody="Yes" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.668971 0.810269 0.895079</BorderColor>
+         <FillColor>0.743297 0.900298 0.994537</FillColor>
+      </Style>
+      <Style AffectTextColor="No" Name="Bubble (Green)" AffectFontStyle="No" AffectSize="No" AffectSticky="No" AffectAlignment="No" ID="07F7642D-2DA7-404B-ACF5-82B3A9D4560E" AffectNoteBody="Yes" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.669413 0.885237 0.56701</BorderColor>
+         <FillColor>0.743786 0.983612 0.629999</FillColor>
+      </Style>
+      <Style AffectTextColor="No" Name="Bubble (Red)" AffectFontStyle="No" AffectSize="No" AffectSticky="No" AffectAlignment="No" ID="7554007C-1AA3-42AE-B0B4-D241AB6742F7" AffectNoteBody="Yes" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.894545 0.707759 0.715892</BorderColor>
+         <FillColor>0.993942 0.786389 0.795438</FillColor>
+      </Style>
+      <Style AffectTextColor="No" Name="Bubble (Yellow)" AffectFontStyle="No" AffectSize="No" AffectSticky="No" AffectAlignment="No" ID="0A341A7A-4DD2-43A6-8A1B-39D0525F915C" AffectNoteBody="Yes" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.877745 0.828275 0.562127</BorderColor>
+         <FillColor>0.97528 0.920302 0.624582</FillColor>
+      </Style>
+      <Style AffectTextColor="Yes" Name="Red Text" AffectFontStyle="No" AffectSize="No" AffectSticky="No" AffectAlignment="No" ID="F1EC07C0-C103-4135-9A7E-B17362C8E6B5" AffectNoteBody="No" AffectFade="No">
+         <TextColor>0.985946 0.0 0.026947</TextColor>
+      </Style>
+      <Style AffectTextColor="No" Name="Title Text" AffectFontStyle="Yes" AffectSize="No" AffectSticky="No" AffectAlignment="Yes" ID="E787FC49-740A-4356-8918-A9198CEC2437" AffectNoteBody="No" AffectFade="No">
+         <IsBold>Yes</IsBold>
+         <FontSize>28.0</FontSize>
+      </Style>
+      <Style AffectTextColor="No" Name="Bubble (Pink)" AffectFontStyle="No" AffectSize="No" AffectSticky="No" AffectAlignment="No" ID="C9F433B2-2E8D-4ADE-B60B-FBFBDEDC0C6F" AffectNoteBody="Yes" AffectFade="No">
+         <BorderThickness>1</BorderThickness>
+         <BorderColor>0.894545 0.707759 0.715892</BorderColor>
+         <FillColor>0.98912 0.814084 1.0</FillColor>
+      </Style>
+   </NoteStyles>
+   <UISettings>
+      <BackgroundColor>1.0 0.988373 0.949905</BackgroundColor>
+      <DefaultFont>Arial</DefaultFont>
+      <DefaultTextColor/>
+      <NoteXPadding>8.00</NoteXPadding>
+   </UISettings>
+   <PrintSettings PaperSize="-1.000000,-1.000000" HorizontalPagination="Clip" ScaleFactor="1.000000" PagesAcross="1" LeftMargin="12.000000" PaperType="iso-a4" TopMargin="12.000000" HorizontallyCentered="Yes" Orientation="Portrait" BottomMargin="12.000000" PagesDown="1" Collates="Yes" RightMargin="12.000000" VerticalPagination="Auto" VerticallyCentered="Yes"/>
+</ScappleDocument>
