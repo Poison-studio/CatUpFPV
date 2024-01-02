@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CatUp
 {
@@ -8,6 +9,8 @@ namespace CatUp
         private int value;
 
         private bool isDeath = false;
+
+        public UnityEvent death;
 
         public int Value
         {
@@ -28,6 +31,8 @@ namespace CatUp
                     isDeath = true;
 
                     OnDeath();
+
+                    death.Invoke();
                 }
             }
         }

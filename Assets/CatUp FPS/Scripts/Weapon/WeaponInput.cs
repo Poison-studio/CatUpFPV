@@ -17,6 +17,16 @@ namespace CatUp
             {
                 weaponHandler.Reload();
             }
+            else if(Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                weaponHandler.SwapWeapon(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                weaponHandler.SwapWeapon(0);
+            }
+
+
         }
     }
 

@@ -1,54 +1,21 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CatUp
 {
     public class Shotgun : Weapon
     {
         [SerializeField]
-        private GameObject[] shells;
-
-        [SerializeField]
         private Transform shootPosition;
 
         [SerializeField]
         private GameObject InGameCrosshair;
-
-        public override void Reload()
-        {
-            //Не уверен, что эта строчка кода должна быть тут
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) return;
-
-            if (shootTimer > 0) return;
-
-            animator.SetTrigger("Reload");
-
-            CurrentAmmo = maxAmmo;
-            shootTimer = reloadDelay;
-
-            reloadingSoundEffect.Play();
-
-            StartCoroutine(ShowShells());
-
-            IEnumerator ShowShells()
-            {
-                yield return new WaitForSeconds(.5f);
-
-                foreach (GameObject go in shells)
-                {
-                    go.SetActive(true);
-                }
-
-                yield return null;
-            }
-        }
 
         public override void Shoot()
         {
             //Не уверен, что эта строчка кода должна быть тут
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) return;
 
-            if (CurrentAmmo <= 0)
+            if (WeaponClip.CurrentBullets <= 0)
             {
                 noAmmoSoundEffect.Play();
                 return;
@@ -60,9 +27,7 @@ namespace CatUp
 
             shootSoundEffect.Play();
 
-            CurrentAmmo--;
-
-            shells[CurrentAmmo].SetActive(false);
+            WeaponClip.CurrentBullets--;
 
             RaycastHit hit;
 
@@ -78,7 +43,7 @@ namespace CatUp
             }
 
 
-            wasFire.Invoke(shootImpact);
+            wasFire.Invoke(new ShootInfo(shootImpact, this));
 
             foreach (ParticleSystem picked in shootParticles)
             {
