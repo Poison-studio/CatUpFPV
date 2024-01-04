@@ -28,7 +28,19 @@ namespace CatUp
         [SerializeField] private float impactSharpness;
         [SerializeField] private float impactReturnSpeed;
 
-        public WeaponClip shotgunBullets = new WeaponClip();
+
+        private WeaponClip shotgunBullets;
+        public WeaponClip ShotgunBullets
+        {
+            get
+            {
+                return shotgunBullets == null ? shotgunBullets = new WeaponClip() : shotgunBullets;
+            }
+            private set
+            {
+                shotgunBullets = value;
+            }
+        }
 
         public void Start()
         {
@@ -95,7 +107,7 @@ namespace CatUp
                 GameObject newWeaponGameObject = Instantiate(weaponToPickup, spawnPoint);
 
                 Weapon newWeapon = newWeaponGameObject.GetComponent<Weapon>();
-                newWeapon.WeaponClip = shotgunBullets;
+                newWeapon.WeaponClip = ShotgunBullets;
 
                 weapons.Add(newWeapon);
                 newWeapon.wasFire.AddListener(ApplyImpact);
@@ -115,7 +127,7 @@ namespace CatUp
                 GameObject newWeaponGameObject = Instantiate(weaponToPickup, spawnPoint);
 
                 Weapon newWeapon = newWeaponGameObject.GetComponent<Weapon>();
-                newWeapon.WeaponClip = shotgunBullets;
+                newWeapon.WeaponClip = ShotgunBullets;
 
                 weapons.Add(newWeapon);
 
@@ -143,9 +155,9 @@ namespace CatUp
         private void ApplyImpact(ShootInfo shootInfo)
         {
             goldPlayerController.Camera.CameraShake(shootInfo.shootImpact.cameraShakeFrequency, shootInfo.shootImpact.cameraShakeMagnitude, shootInfo.shootImpact.cameraShakeDuration);
-            goldPlayerController.Camera.ApplyRecoil(shootInfo.shootImpact.cameraRecoilAmount,shootInfo.shootImpact.cameraRecoilTime);
+            goldPlayerController.Camera.ApplyRecoil(shootInfo.shootImpact.cameraRecoilAmount, shootInfo.shootImpact.cameraRecoilTime);
 
-            targetWeaponRotation += new Vector3(Random.Range(-shootInfo.shootImpact.weaponRecoilX, shootInfo.shootImpact.weaponRecoilX), 
+            targetWeaponRotation += new Vector3(Random.Range(-shootInfo.shootImpact.weaponRecoilX, shootInfo.shootImpact.weaponRecoilX),
                 Random.Range(-shootInfo.shootImpact.weaponRecoilY, shootInfo.shootImpact.weaponRecoilY), Random.Range(-shootInfo.shootImpact.weaponRecoilZ, shootInfo.shootImpact.weaponRecoilZ));
         }
     }

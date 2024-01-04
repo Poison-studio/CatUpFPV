@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CatUp
 {
@@ -7,9 +7,11 @@ namespace CatUp
         [SerializeField]
         private int damage;
 
-        [SerializeField]
         private AudioPlayer audioPlayer;
 
+        /// <summary>
+        /// Убрать эту переменную, звуки воспроизводить через игрока
+        /// </summary>
         [SerializeField]
         private AudioClip audioClip;
 
@@ -24,8 +26,9 @@ namespace CatUp
         {
             if (other.gameObject.tag == "Player")
             {
+                other.GetComponent<PlayerAccessPoint>().AudioPlayer.Play(volume, pitch, audioClip);
+
                 other.gameObject.GetComponent<Health>().GetDamage(damage);
-                audioPlayer?.Play(volume,pitch, audioClip);
             }
         }
     }

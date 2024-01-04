@@ -16,7 +16,7 @@ namespace CatUp
             health.death.AddListener(OnDeath);
         }
 
-        private void OnDeath()
+        private void OnDeath(GameObject gameObject)
         {
             GetComponent<Camera>().fieldOfView = target.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView;
         }

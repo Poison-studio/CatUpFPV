@@ -58,7 +58,9 @@ namespace CatUp
             {
                 picked.GetComponent<MeshRenderer>().enabled = true;
                 picked.AddComponent<Rigidbody>();
-                picked.GetComponent<Rigidbody>().AddForce((transform.position - FindObjectOfType<GoldPlayerController>().gameObject.transform.position) * Random.Range(30, 60));
+                float forceValue = 80;
+                picked.GetComponent<Rigidbody>().AddForce((transform.position - FindObjectOfType<GoldPlayerController>().gameObject.transform.position).normalized * forceValue * Random.Range(3, 6));
+                picked.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(0,2), Random.Range(0, 2), Random.Range(0, 2)));
             }
         }
 

@@ -1,9 +1,9 @@
 ﻿title: KiraInitialization
-position: 270,-367
+position: -314,-288
 ---
     <<declare $KiraStatus = 0>>
     <<StartDialogue>>
-    <<jump KiraDialogueSelector>>
+    <<jump KiraDialogueSelector2>>
 ===
 
 title: KiraDialogueSelector
@@ -60,9 +60,36 @@ position: 597,213
 ===
 
 title: DontOpenGate
-position: -5,-363
+position: 267,-359
 ---
     <<StartDialogue>>
-Не советую тебе открывать эти ворота. Скелеты могут услышать.
+Не советую открывать эти ворота. Скелеты могут услышать.
+    <<EndDialugue>>
+===
+
+title: KiraDialogueSelector2
+position: -315,-68
+---
+    <<if $KiraStatus eq 0>>
+    <<jump KiraAlphaBuild1>>
+    <<elseif $KiraStatus eq 1>>
+    <<jump KiraAlphaBuild2>>
+    <<endif>>
+===
+
+title: KiraAlphaBuild1
+position: -305,177
+---
+Я уже думала ты не очнёшься.
+Мне нужна помощь, весь город захвачен скелетами, нам нужно эвакуировать оставшихся людей.
+Доберись до самой высокой точки на карте, с неё ты сможешь вызвать помощь.
+    <<set $KiraStatus to 1>>
+    <<EndDialugue>>
+===
+
+title: KiraAlphaBuild2
+position: -547,172
+---
+Доберись до самой высокой точки на карте.
     <<EndDialugue>>
 ===
