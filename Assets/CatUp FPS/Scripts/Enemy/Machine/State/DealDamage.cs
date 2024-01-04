@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CatUp
@@ -12,23 +10,22 @@ namespace CatUp
 
         public override void OnStateEnter()
         {
-            machineData.meshAgent.isStopped = true;
-            machineData.animator.SetTrigger("Attack");
+            //data.animator.ResetTrigger();
+            data.animator.SetTrigger("Attack");
         }
 
         public override void OnStateExit()
         {
-            exitCondition = false;
-            machineData.meshAgent.isStopped = false;
+            exitCondition[0] = false;
         }
 
         public override void Perform()
         {
-            float exitTime = machineData.animator.GetCurrentAnimatorStateInfo(0).normalizedTime % machineData.animator.GetCurrentAnimatorClipInfo(0).Length;
+            float exitTime = data.animator.GetCurrentAnimatorStateInfo(0).normalizedTime % data.animator.GetCurrentAnimatorClipInfo(0).Length;
 
-            if ((Vector3.Distance(machineData.target.position, machineData.agent.position) > distance) && exitTime > 0.8f)
+            if ((Vector3.Distance(data.target.position, data.agent.position) > distance) && exitTime > 0.8f)
             {
-                exitCondition = true;
+                exitCondition[0] = true;
             }
         }
     }

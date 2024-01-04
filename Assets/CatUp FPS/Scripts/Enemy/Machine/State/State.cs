@@ -4,13 +4,15 @@ namespace CatUp
 {
     public abstract class State : IFormattable
     {
-        public bool exitCondition { get; protected set; }
+        public bool[] exitCondition { get; protected set; }
 
-        public MachineData machineData;
+        public MachineData data;
 
-        public State(MachineData machineData)
+        public State(MachineData data)
         {
-            this.machineData = machineData;
+            this.data = data;
+
+            exitCondition = new bool[2];
         }
 
         public abstract void OnStateEnter();

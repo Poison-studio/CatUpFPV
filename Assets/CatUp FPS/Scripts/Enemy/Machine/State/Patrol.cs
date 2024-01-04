@@ -15,13 +15,13 @@ namespace CatUp
 
         public override void OnStateEnter()
         {
-            machineData.meshAgent.SetDestination(pathPoints[currentPathPoint].position);
-            machineData.animator.SetTrigger("Walk");
+            data.meshAgent.SetDestination(pathPoints[currentPathPoint].position);
+            data.animator.SetTrigger("Walk");
         }
 
         public override void OnStateExit()
         {
-            exitCondition = false;
+            exitCondition[0] = false;
             currentPathPoint++;
             if (currentPathPoint >= pathPoints.Length)
             {
@@ -31,11 +31,11 @@ namespace CatUp
 
         public override void Perform()
         {
-            if (!machineData.meshAgent.hasPath || machineData.meshAgent.pathPending) return;
+            if (!data.meshAgent.hasPath || data.meshAgent.pathPending) return;
 
-            if (machineData.meshAgent.remainingDistance <= machineData.meshAgent.stoppingDistance)
+            if (data.meshAgent.remainingDistance <= data.meshAgent.stoppingDistance)
             {
-                exitCondition = true;
+                exitCondition[0] = true;
             }
         }
     }

@@ -34,7 +34,7 @@ namespace CatUp
 
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, shootMask))
             {
-
+                //hit.point
                 if (hit.collider.gameObject.tag == "Skeleton")
                 {
                     hit.collider.gameObject.GetComponent<Health>().GetDamage(1);

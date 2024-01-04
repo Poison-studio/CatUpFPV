@@ -15,15 +15,15 @@ namespace CatUp
 
         public override void OnStateEnter()
         {
-            machineData.meshAgent.isStopped = true;
-            machineData.animator.SetTrigger("Idle");
+            data.meshAgent.isStopped = true;
+            data.animator.SetTrigger("Idle");
         }
 
         public override void OnStateExit()
         {
-            machineData.meshAgent.isStopped = false;
+            data.meshAgent.isStopped = false;
             timer = 0f;
-            exitCondition = false;
+            exitCondition[0] = false;
         }
 
         public override void Perform()
@@ -33,7 +33,7 @@ namespace CatUp
 
             if(timer > waitTime)
             {
-                exitCondition = true;
+                exitCondition[0] = true;
             }
         }
     }

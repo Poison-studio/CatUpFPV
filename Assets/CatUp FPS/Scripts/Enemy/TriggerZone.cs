@@ -22,7 +22,7 @@ namespace CatUp
         {
             foreach (Machine machine in machines)
             {
-                machine.machineData.target = other.transform;
+                machine.data.target = other.transform;
                 machine.TriggerTransition(trigger);
             }
         }

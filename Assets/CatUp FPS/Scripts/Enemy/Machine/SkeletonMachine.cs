@@ -12,22 +12,24 @@ namespace CatUp
         private Idle patrolIdle;
         private FollowTarget followTargetState;
         private DealDamage dealDamageState;
+        private Throw throwState;
 
         protected void Start()
         {
             machine = new StateMachine();
 
-            machineData = new MachineData();
-            machineData.agent = transform;
-            machineData.animator = GetComponent<Animator>();
-            machineData.meshAgent = GetComponent<NavMeshAgent>();
-            machineData.audioPlayer = GetComponent<AudioPlayer>();
+            data = new MachineData();
+            data.agent = transform;
+            data.animator = GetComponent<Animator>();
+            data.meshAgent = GetComponent<NavMeshAgent>();
+            data.audioPlayer = GetComponent<AudioPlayer>();
 
-            patrolState = new Patrol(machineData, GetComponent<Path>().Points);
-            endGameIdle = new Idle(machineData, false);
-            patrolIdle = new Idle(machineData, true);
-            followTargetState = new FollowTarget(machineData, GetComponent<NavMeshAgent>());
-            dealDamageState = new DealDamage(machineData);
+            patrolState = new Patrol(data, GetComponent<Path>().Points);
+            endGameIdle = new Idle(data, false);
+            patrolIdle = new Idle(data, true);
+            followTargetState = new FollowTarget(data, GetComponent<NavMeshAgent>());
+            dealDamageState = new DealDamage(data);
+            throwState = new Throw(data);
 
             statesToInitialize = new List<State>
             {
@@ -35,7 +37,8 @@ namespace CatUp
                 endGameIdle,
                 followTargetState,
                 dealDamageState,
-                patrolIdle
+                patrolIdle,
+                throwState
             };
 
             InitializeStates();
@@ -49,17 +52,23 @@ namespace CatUp
                 machine.SetStartState(patrolIdle);
             }
 
-            machine.AddTransition(patrolIdle, patrolState, transition => patrolIdle.exitCondition);
-            machine.AddTransition(patrolState, patrolIdle, transition => patrolState.exitCondition);
+            machine.AddTransition(patrolIdle, patrolState, transition => patrolIdle.exitCondition[0]);
+            machine.AddTransition(patrolState, patrolIdle, transition => patrolState.exitCondition[0]);
 
-            machine.AddTransition(followTargetState, dealDamageState, transition => followTargetState.exitCondition);
-            machine.AddTransition(dealDamageState, followTargetState, transition => dealDamageState.exitCondition);
+            machine.AddTransition(followTargetState, dealDamageState, transition => followTargetState.exitCondition[0]);
+            machine.AddTransition(dealDamageState, followTargetState, transition => dealDamageState.exitCondition[0]);
+
+            machine.AddTransition(followTargetState, throwState, transition => followTargetState.exitCondition[1]);
+            machine.AddTransition(throwState, endGameIdle, transition => throwState.exitCondition[0]);
+            machine.AddTransition(throwState, followTargetState, transition => throwState.exitCondition[1]);
+
 
             machine.AddTriggerTransition("TargetDetected", patrolIdle, followTargetState);
             machine.AddTriggerTransition("TargetDetected", patrolState, followTargetState);
             machine.AddTriggerTransition("TargetDetected", endGameIdle, followTargetState);
 
             machine.AddTriggerTransition("Idle", dealDamageState, endGameIdle);
+            
 
             machine.Init();
         }
