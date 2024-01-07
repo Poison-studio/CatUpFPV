@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2340df684cb8e384d9edf0d8c2b61659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableText: "[E] \u041F\u043E\u0434\u043D\u044F\u0442\u044C"
+  interactableText: "[E] \u041F\u043E\u0434\u043D\u044F\u0442\u044C \u043A\u043E\u043C\u043F\u0430\u0441"
   disableObjectAfterInteract: 1
   disableColliderAfterInteract: 1
   colliderToDisable: {fileID: 92892045299802491}

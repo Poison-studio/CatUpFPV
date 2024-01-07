@@ -14,6 +14,9 @@ namespace CatUp
         private DealDamage dealDamageState;
         private Throw throwState;
 
+        [SerializeField]
+        public Path path;
+
         protected void Start()
         {
             machine = new StateMachine();
@@ -24,7 +27,10 @@ namespace CatUp
             data.meshAgent = GetComponent<NavMeshAgent>();
             data.audioPlayer = GetComponent<AudioPlayer>();
 
-            patrolState = new Patrol(data, GetComponent<Path>().Points);
+
+            patrolState = new Patrol(data, path.Points);
+
+
             endGameIdle = new Idle(data, false);
             patrolIdle = new Idle(data, true);
             followTargetState = new FollowTarget(data, GetComponent<NavMeshAgent>());
@@ -43,7 +49,7 @@ namespace CatUp
 
             InitializeStates();
 
-            if(GetComponent<Path>().Points.Length == 0)
+            if (path.Points.Length <= 1)
             {
                 machine.SetStartState(endGameIdle);
             }
@@ -68,7 +74,7 @@ namespace CatUp
             machine.AddTriggerTransition("TargetDetected", endGameIdle, followTargetState);
 
             machine.AddTriggerTransition("Idle", dealDamageState, endGameIdle);
-            
+
 
             machine.Init();
         }

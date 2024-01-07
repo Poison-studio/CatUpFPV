@@ -10,7 +10,7 @@ namespace CatUp
 
         private bool isDeath = false;
 
-        public UnityEvent death;
+        public UnityEvent<GameObject> death;
 
         public int Value
         {
@@ -32,7 +32,7 @@ namespace CatUp
 
                     OnDeath();
 
-                    death.Invoke();
+                    death.Invoke(gameObject);
                 }
             }
         }

@@ -11,7 +11,7 @@ namespace CatUp
         {
             base.Interact(interactor);
 
-            interactor.GetComponent<PlayerAccessPoint>().WeaponHandler.shotgunBullets.AddBullets(bulletsCount);
+            interactor.GetComponent<PlayerAccessPoint>().WeaponHandler.ShotgunBullets.AddBullets(bulletsCount);
             //interactor.GetComponent<PlayerAccessPoint>().WeaponHandler.PickedWeapon.WeaponClip.AddBullets(bulletsCount);
 
         }
